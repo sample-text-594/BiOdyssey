@@ -12,14 +12,18 @@ public class Planet : MonoBehaviour
 
     public ShapeSettings shapeSettings;
     public ColourSettings colourSettings;
+    public FloraSettings floraSettings;
 
     [HideInInspector]
     public bool shapeSettingsFoldout;
     [HideInInspector]
     public bool colourSettingsFoldout;
+    [HideInInspector]
+    public bool floraSettingsFoldout;
 
     ShapeGenerator shapeGenerator = new ShapeGenerator();
     ColourGenerator colourGenerator = new ColourGenerator();
+    FloraGenerator floraGenerator = new FloraGenerator();
 
     [SerializeField, HideInInspector]
     MeshFilter[] meshFilters;
@@ -28,6 +32,7 @@ public class Planet : MonoBehaviour
     void Initialize() {
         shapeGenerator.UpdateSettings(shapeSettings);
         colourGenerator.UpdateSettings(colourSettings);
+        floraGenerator.UpdateSettings(floraSettings, transform);
 
         if (meshFilters == null || meshFilters.Length == 0) {
             meshFilters = new MeshFilter[6];
@@ -71,6 +76,12 @@ public class Planet : MonoBehaviour
         if (autoUpdate) {
             Initialize();
             GenerateColours();
+        }
+    }
+
+    public void OnFloraSettingsUpdated() {
+        if (autoUpdate) {
+            Initialize();
         }
     }
 

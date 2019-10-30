@@ -9,6 +9,7 @@ public class PlanetEditor : Editor
     Planet planet;
     Editor shapeEditor;
     Editor colourEditor;
+    Editor floraEditor;
 
     public override void OnInspectorGUI() {
         using (var check = new EditorGUI.ChangeCheckScope()) {
@@ -24,6 +25,7 @@ public class PlanetEditor : Editor
 
         DrawSettingsEditor(planet.shapeSettings, planet.OnShapeSettingsUpdated, ref planet.shapeSettingsFoldout, ref shapeEditor);
         DrawSettingsEditor(planet.colourSettings, planet.OnColourSettingsUpdated, ref planet.colourSettingsFoldout, ref colourEditor);
+        DrawSettingsEditor(planet.floraSettings, planet.OnFloraSettingsUpdated, ref planet.floraSettingsFoldout, ref floraEditor);
     }
 
     void DrawSettingsEditor(Object settings, System.Action onSettingsUpdated, ref bool foldout, ref Editor editor) {
