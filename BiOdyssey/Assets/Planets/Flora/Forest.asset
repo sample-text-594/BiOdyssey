@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b981c23910453a24ebcff829c62ad219, type: 3}
   m_Name: Forest
   m_EditorClassIdentifier: 
-  treesPerFace: 0
-  treeMesh: {fileID: 0}
-  treeMaterial: {fileID: 0}
+  treesPerFace: 250
+  treeMesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  treeMaterial: {fileID: 2100000, guid: 013dd412d79176049a247bc2fa131705, type: 2}

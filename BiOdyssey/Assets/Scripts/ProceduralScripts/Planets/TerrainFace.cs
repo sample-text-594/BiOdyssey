@@ -11,6 +11,10 @@ public class TerrainFace {
     Vector3 axisA;
     Vector3 axisB;
 
+    public int GetResolution() {
+        return resolution;
+    }
+
     public TerrainFace(ShapeGenerator shapeGenerator, Mesh mesh, int resolution, Vector3 localUp) {
         this.shapeGenerator = shapeGenerator;
         this.mesh = mesh;
@@ -61,5 +65,13 @@ public class TerrainFace {
         mesh.RecalculateNormals();
         mesh.uv = uvHeight;
         mesh.uv2 = uvTex;
+    }
+
+    public Vector3 GetUp(int x, int y) {
+        return mesh.vertices[x + y * resolution].normalized;
+    }
+
+    public float GetHeight(int x, int y) {
+        return mesh.vertices[x + y * resolution].magnitude;
     }
 }

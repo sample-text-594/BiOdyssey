@@ -63,6 +63,7 @@ public class Planet : MonoBehaviour
         Initialize();
         GenerateMesh();
         GenerateColours();
+        GenerateFlora();
     }
 
     public void OnShapeSettingsUpdated() {
@@ -82,6 +83,7 @@ public class Planet : MonoBehaviour
     public void OnFloraSettingsUpdated() {
         if (autoUpdate) {
             Initialize();
+            GenerateFlora();
         }
     }
 
@@ -97,5 +99,9 @@ public class Planet : MonoBehaviour
 
     void GenerateColours() {
         colourGenerator.UpdateColours();
+    }
+
+    void GenerateFlora() {
+        floraGenerator.UpdateFlora(terrainFaces, shapeSettings.planetRadius);
     }
 }
