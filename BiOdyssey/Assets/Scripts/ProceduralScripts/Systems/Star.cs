@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Star : MonoBehaviour
 {
-
-    public GameObject star;
     int numPlanets;
     public Mesh mesh;
     public Gradient grad;
@@ -13,13 +11,11 @@ public class Star : MonoBehaviour
     float[] OrbitDegreesArray;
     float[] distancesArray;
     Transform[] transformArray;
-    string systemName;
 
     // Start is called before the first frame update
     void Start()
     {
-        systemName = generateName();
-        star.name = systemName;
+        gameObject.name = generateName();
         float scale = Random.Range(1, 101) / 10.0f;
         transform.localScale = new Vector3(scale, scale, scale);
         GetComponent<Light>().color = grad.Evaluate(scale/10);
@@ -38,7 +34,7 @@ public class Star : MonoBehaviour
             {
                 distancesArray[i] = Random.Range(1, 5) + scale/4;
             }
-            string name = systemName;
+            string name = gameObject.name;
             switch (i)
             {
                 case 0:
@@ -68,7 +64,6 @@ public class Star : MonoBehaviour
             RotationSpeedArray[i] = Random.Range(0, 101);
             float planetScale = 0.2f + (Random.Range(0, 9) / 20.0f);
             transformArray[i].localScale = new Vector3 (planetScale, planetScale, planetScale);
-            planetoid.AddComponent<GoToPlanet>();
             planetoid.AddComponent<BoxCollider>();
         }
     }
@@ -80,6 +75,34 @@ public class Star : MonoBehaviour
             transformArray[i].Rotate(Vector3.up, RotationSpeedArray[i] * Time.deltaTime);
             transformArray[i].RotateAround(transform.position, Vector3.up, OrbitDegreesArray[i] * Time.deltaTime);  
         }
+    }
+
+    public string GetFirstPlanetName() {
+        return transformArray[0].name;
+    }
+
+    public string GetLastPlanetName() {
+        return transformArray[transformArray.Length - 1].name;
+    }
+
+    public Transform GetPrevPlanet(Transform actualPlanet) {
+        for (int i = 0; i < transformArray.Length; i++) {
+            if (transformArray[i] == actualPlanet) {
+                return transformArray[i - 1];
+            }
+        }
+
+        return null;
+    }
+
+    public Transform GetNextPlanet(Transform actualPlanet) {
+        for (int i = 0; i < transformArray.Length; i++) {
+            if (transformArray[i] == actualPlanet) {
+                return transformArray[i + 1];
+            }
+        }
+
+        return null;
     }
 
     public string generateName()
