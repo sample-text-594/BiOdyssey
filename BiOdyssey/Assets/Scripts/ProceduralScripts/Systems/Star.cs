@@ -8,6 +8,8 @@ public class Star : MonoBehaviour
     public Gradient grad;
     public PlanetSettings[] planetSettings;
 
+    NameGenerator nameGenerator;
+
     int numPlanets;
     float[] RotationSpeedArray;
     float[] OrbitDegreesArray;
@@ -17,7 +19,8 @@ public class Star : MonoBehaviour
 
     void Start()
     {
-        gameObject.name = generateName();
+        nameGenerator = new NameGenerator();
+        gameObject.name = nameGenerator.generateName(1);
         float scale = Random.Range(1, 101) / 10.0f;
         transform.localScale = new Vector3(scale, scale, scale);
         GetComponent<Light>().color = grad.Evaluate(scale/10);
@@ -148,47 +151,5 @@ public class Star : MonoBehaviour
         }
 
         return null;
-    }
-
-    public string generateName()
-    {
-        int rand1 = Random.Range(0, 11);
-        string name = "";
-        switch (rand1)
-        {
-            case 0:
-                name += "Gliese-";
-                break;
-            case 1:
-                name += "HD ";
-                break;
-            case 2:
-                name += "Kepler-";
-                break;
-            case 3:
-                name += "HIP ";
-                break;
-            case 4:
-                name += "SN ";
-                break;
-            case 5:
-                name += "Hubble-";
-                break;
-            case 6:
-                name += "WR ";
-                break;
-            case 7:
-                name += "R ";
-                break;
-            case 8:
-                name += "PSR ";
-                break;
-            case 9:
-                name += "IRAS ";
-                break;
-        }
-        int rand2 = Random.Range(0, 100000);
-        name += rand2;
-        return name;
     }
 }
