@@ -21,9 +21,9 @@ public class Planet : MonoBehaviour
     [HideInInspector]
     public bool floraSettingsFoldout;
 
-    ShapeGenerator shapeGenerator = new ShapeGenerator();
-    ColourGenerator colourGenerator = new ColourGenerator();
-    FloraGenerator floraGenerator = new FloraGenerator();
+    ShapeGenerator shapeGenerator;
+    ColourGenerator colourGenerator;
+    FloraGenerator floraGenerator;
 
     [SerializeField, HideInInspector]
     MeshFilter[] meshFilters;
@@ -34,6 +34,12 @@ public class Planet : MonoBehaviour
     }
 
     void Initialize() {
+        if (shapeGenerator == null) {
+            shapeGenerator = new ShapeGenerator();
+            colourGenerator = new ColourGenerator();
+            floraGenerator = new FloraGenerator();
+        }
+
         shapeGenerator.UpdateSettings(shapeSettings);
         colourGenerator.UpdateSettings(colourSettings);
         floraGenerator.UpdateSettings(floraSettings, transform);
@@ -49,7 +55,11 @@ public class Planet : MonoBehaviour
             if (meshFilters[i] == null) {
                 GameObject meshObj = new GameObject("mesh");
                 meshObj.transform.parent = transform;
-                meshObj.layer = 8;
+                if (transform.gameObject.layer == 0) {
+                    meshObj.layer = 8;
+                } else {
+                    meshObj.layer = transform.gameObject.layer;
+                }
 
                 meshObj.AddComponent<MeshRenderer>();
                 meshFilters[i] = meshObj.AddComponent<MeshFilter>();

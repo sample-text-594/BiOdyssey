@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a891f4e8e9d8c3b478e8964124f5e593, type: 3}
   m_Name: EarthLike
   m_EditorClassIdentifier: 
-  planetRadius: 50
+  planetRadius: 0.3
   noiseLayers:
   - enabled: 1
     useFirstLayerAsMask: 0

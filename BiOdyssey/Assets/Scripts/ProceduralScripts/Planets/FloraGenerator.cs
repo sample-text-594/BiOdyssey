@@ -15,6 +15,7 @@ public class FloraGenerator {
         if (flora == null) {
             flora = new GameObject("flora");
             flora.transform.parent = t;
+            flora.transform.localPosition = new Vector3(0f, 0f, 0f);
         }
 
         if (meshFilters == null || meshFilters.Length != settings.treesPerFace * 6) {
@@ -32,6 +33,7 @@ public class FloraGenerator {
                 if (meshFilters[i] == null) {
                     GameObject meshObj = new GameObject("tree");
                     meshObj.transform.parent = flora.transform;
+                    meshObj.transform.localPosition = new Vector3(0f, 0f, 0f);
 
                     meshObj.AddComponent<MeshRenderer>();
                     meshFilters[i] = meshObj.AddComponent<MeshFilter>();
