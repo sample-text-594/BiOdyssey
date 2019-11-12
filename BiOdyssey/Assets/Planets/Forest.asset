@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e393c6b94827cd44d855d432901f06aa, type: 3}
-  m_Name: New Planet Settings
+  m_Name: Forest
   m_EditorClassIdentifier: 
-  shapeSettings: {fileID: 0}
-  colourSettings: {fileID: 0}
-  floraSettings: {fileID: 0}
+  shapeSettings: {fileID: 11400000, guid: 9ae69897daf13b64da76d10cb27fc34e, type: 2}
+  colourSettings: {fileID: 11400000, guid: 34f2bcb379c60e644b4bb9cff63ee0f4, type: 2}
+  floraSettings: {fileID: 11400000, guid: 8cf958fc966bd474081d45a2e654e48d, type: 2}

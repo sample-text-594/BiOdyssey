@@ -10,6 +10,7 @@ public class Star : MonoBehaviour
 
     NameGenerator nameGenerator;
 
+    int seed;
     int numPlanets;
     float[] RotationSpeedArray;
     float[] OrbitDegreesArray;
@@ -17,13 +18,23 @@ public class Star : MonoBehaviour
     Transform[] planetoidTransformArray;
     Transform[] planetTransformArray;
 
+    Color sunLightColor;
+
     void Start()
     {
+        seed = PlayerPrefs.GetInt("seed", -1);
+        if (seed == -1) {
+            seed = 1;
+        }
+
+        Random.InitState(seed);
+
         nameGenerator = new NameGenerator();
         gameObject.name = nameGenerator.generateName(1);
         float scale = Random.Range(1, 101) / 10.0f;
         transform.localScale = new Vector3(scale, scale, scale);
-        GetComponent<Light>().color = grad.Evaluate(scale/10);
+        GetComponent<Light>().color = grad.Evaluate(scale / 10);
+        sunLightColor = grad.Evaluate(scale/10);
 
         numPlanets = Random.Range(3, 6);
         planetoidTransformArray = new Transform[numPlanets];
@@ -74,9 +85,10 @@ public class Star : MonoBehaviour
             GameObject sunLight = new GameObject("sunLight");
             sunLight.transform.SetParent(planet.transform);
 
-            sunLight.transform.localPosition = new Vector3(0f, 0f, -2f);
+            sunLight.transform.localPosition = new Vector3(0f, 0f, -4f);
 
             Light l = sunLight.AddComponent<Light>();
+            l.color = sunLightColor;
             l.range = 20f;
             l.intensity = 5f;
             l.cullingMask = 1 << (i + 20);
@@ -86,7 +98,7 @@ public class Star : MonoBehaviour
             GameObject moonLight = new GameObject("moonLight");
             moonLight.transform.SetParent(planet.transform);
 
-            moonLight.transform.localPosition = new Vector3(0f, 0f, 2f);
+            moonLight.transform.localPosition = new Vector3(0f, 0f, 4f);
             moonLight.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
 
             l = moonLight.AddComponent<Light>();
@@ -99,10 +111,13 @@ public class Star : MonoBehaviour
             Planet p = planet.AddComponent<Planet>();
             int randPlanet = 0;
 
-            p.resolution = 20;
-            p.shapeSettings = planetSettings[randPlanet].shapeSettings;
-            p.colourSettings = planetSettings[randPlanet].colourSettings;
-            p.floraSettings = planetSettings[randPlanet].floraSettings;
+            p.resolution = 40;
+            p.shapeSettings = planetSettings[randPlanet].shapeSettings.Clone();
+            p.colourSettings = planetSettings[randPlanet].colourSettings.Clone();
+            p.floraSettings = planetSettings[randPlanet].floraSettings.Clone();
+            p.floraSettings.generateFlora = false;
+
+            p.shapeSettings.noiseLayers[0].noiseSettings.simpleNoiseSettings.centre = new Vector3(seed * 10 + i, seed * 10 + i, seed * 10 + i);
 
             p.GeneratePlanet();
 
@@ -113,8 +128,10 @@ public class Star : MonoBehaviour
             OrbitDegreesArray[i] = 50/distancesArray[i] + Random.Range(0, 5);
             RotationSpeedArray[i] = Random.Range(0, 101);
             
-            planet.AddComponent<BoxCollider>();
+            planet.AddComponent<BoxCollider>().size = new Vector3(5f, 5f, 5f);
         }
+
+        PlayerPrefs.SetInt("seed", ++seed);
     }
     
     void Update()

@@ -42,7 +42,10 @@ public class Planet : MonoBehaviour
 
         shapeGenerator.UpdateSettings(shapeSettings);
         colourGenerator.UpdateSettings(colourSettings);
-        floraGenerator.UpdateSettings(floraSettings, transform);
+
+        if (floraSettings.generateFlora) {
+            floraGenerator.UpdateSettings(floraSettings, transform);
+        }
 
         if (meshFilters == null || meshFilters.Length == 0) {
             meshFilters = new MeshFilter[6];
@@ -118,6 +121,8 @@ public class Planet : MonoBehaviour
     }
 
     void GenerateFlora() {
-        floraGenerator.UpdateFlora(terrainFaces, shapeSettings.planetRadius);
+        if (floraSettings.generateFlora) {
+            floraGenerator.UpdateFlora(terrainFaces, shapeSettings.planetRadius);
+        }
     }
 }
