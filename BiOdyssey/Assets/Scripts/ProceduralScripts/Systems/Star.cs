@@ -33,7 +33,6 @@ public class Star : MonoBehaviour
         gameObject.name = nameGenerator.generateName(1);
         float scale = Random.Range(1, 101) / 10.0f;
         transform.localScale = new Vector3(scale, scale, scale);
-        GetComponent<Light>().color = grad.Evaluate(scale / 10);
         sunLightColor = grad.Evaluate(scale/10);
 
         numPlanets = Random.Range(3, 6);

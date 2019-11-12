@@ -9,7 +9,9 @@ public class GoToPlanet : MonoBehaviour {
     public Transform originalTransform;
     public Transform planetViewTransform;
     public float animationDuration = 2f;
-    public Canvas ui;
+
+    public GameObject uiSystem;
+    public GameObject uiPlanet;
 
     public TextMeshProUGUI planetText;
 
@@ -18,22 +20,27 @@ public class GoToPlanet : MonoBehaviour {
     Transform endAnim;
 
     bool animate;
-    bool uiEnabled;
+    bool uiPlanetEnabled;
+    bool uiSystemEnabled;
     float startTime;
 
     void Start() {
         animate = false;
-        uiEnabled = false;
+        uiPlanetEnabled = false;
+        uiSystemEnabled = true;
     }
 
     void Update() {
-        if (Input.GetMouseButtonDown(0) && !uiEnabled) {
+        if (Input.GetMouseButtonDown(0) && !uiPlanetEnabled) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit)) {
+                uiSystem.SetActive(false);
+                uiSystemEnabled = false;
+
                 transform.SetParent(hit.collider.transform);
-                uiEnabled = true;
+                uiPlanetEnabled = true;
                 StartAnimation(transform, planetViewTransform);
             }
         }
@@ -57,9 +64,13 @@ public class GoToPlanet : MonoBehaviour {
             transform.localEulerAngles = endAnim.localEulerAngles;
             animate = false;
 
-            if (uiEnabled != ui.gameObject.activeSelf) {
+            if (uiPlanetEnabled != uiPlanet.activeSelf) {
                 UpdatePlanetInfo();
-                ui.gameObject.SetActive(uiEnabled);
+                uiPlanet.SetActive(uiPlanetEnabled);
+            }
+
+            if (uiSystemEnabled != uiSystem.activeSelf) {
+                uiSystem.SetActive(uiSystemEnabled);
             }
         } else {
             transform.localPosition = Vector3.Lerp(initAnimPos, endAnim.localPosition, (Time.time - startTime) / animationDuration);
@@ -74,8 +85,9 @@ public class GoToPlanet : MonoBehaviour {
     //Button functions
     public void Return() {
         transform.SetParent(null);
-        ui.gameObject.SetActive(false);
-        uiEnabled = false;
+        uiPlanet.gameObject.SetActive(false);
+        uiPlanetEnabled = false;
+        uiSystemEnabled = true;
 
         StartAnimation(transform, originalTransform);
     }
@@ -86,7 +98,7 @@ public class GoToPlanet : MonoBehaviour {
 
             transform.SetParent(prevPlanet);
 
-            ui.gameObject.SetActive(false);
+            uiPlanet.gameObject.SetActive(false);
             StartAnimation(transform, planetViewTransform);
         }
     }
@@ -97,7 +109,7 @@ public class GoToPlanet : MonoBehaviour {
 
             transform.SetParent(nextPlanet);
 
-            ui.gameObject.SetActive(false);
+            uiPlanet.gameObject.SetActive(false);
             StartAnimation(transform, planetViewTransform);
         }
     }
