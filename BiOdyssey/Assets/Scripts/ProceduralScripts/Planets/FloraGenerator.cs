@@ -31,15 +31,11 @@ public class FloraGenerator {
 
             for (int i = 0; i < meshFilters.Length; i++) {
                 if (meshFilters[i] == null) {
-                    GameObject meshObj = new GameObject("tree");
+                    GameObject meshObj = GameObject.Instantiate(settings.tree);
                     meshObj.transform.parent = flora.transform;
                     meshObj.transform.localPosition = new Vector3(0f, 0f, 0f);
 
-                    meshObj.AddComponent<MeshRenderer>();
-                    meshFilters[i] = meshObj.AddComponent<MeshFilter>();
-                    meshFilters[i].sharedMesh = settings.treeMesh;
-
-                    meshFilters[i].GetComponent<MeshRenderer>().sharedMaterial = settings.treeMaterial;
+                    meshFilters[i] = meshObj.GetComponent<MeshFilter>();
                 }
             }
 
@@ -62,12 +58,11 @@ public class FloraGenerator {
                 
                 if (face.GetHeight(x, y) > waterHeight + 0.1f) {
                     if (meshFilters[index] == null) {
-                        GameObject meshObj = new GameObject("tree");
+                        GameObject meshObj = GameObject.Instantiate(settings.tree);
                         meshObj.transform.parent = flora.transform;
+                        meshObj.transform.localPosition = new Vector3(0f, 0f, 0f);
 
-                        meshObj.AddComponent<MeshRenderer>();
-                        meshFilters[i] = meshObj.AddComponent<MeshFilter>();
-                        meshFilters[i].sharedMesh = settings.treeMesh;
+                        meshFilters[i] = meshObj.GetComponent<MeshFilter>();
                     }
 
                     meshFilters[index].transform.up = face.GetUp(x, y);

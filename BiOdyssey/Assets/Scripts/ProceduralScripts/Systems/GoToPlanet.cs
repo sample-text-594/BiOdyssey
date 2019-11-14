@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GoToPlanet : MonoBehaviour {
     public Star starSystem;
@@ -14,6 +15,9 @@ public class GoToPlanet : MonoBehaviour {
     public GameObject uiPlanet;
 
     public TextMeshProUGUI planetText;
+    public Slider fuel;
+
+    public float fuelPerJump = 0.2f;
 
     Vector3 initAnimPos;
     Vector3 initAnimRot;
@@ -28,6 +32,8 @@ public class GoToPlanet : MonoBehaviour {
         animate = false;
         uiPlanetEnabled = false;
         uiSystemEnabled = true;
+
+        fuel.value = Settings.fuel;
     }
 
     void Update() {
@@ -115,6 +121,24 @@ public class GoToPlanet : MonoBehaviour {
     }
 
     public void Fly(int sceneId) {
+        Planet p = gameObject.GetComponentInParent<Planet>();
+
+        Settings.planetSettings.shapeSettings = p.shapeSettings;
+        Settings.planetSettings.colourSettings = p.colourSettings;
+        Settings.planetSettings.floraSettings = p.floraSettings;
+
         SceneManager.LoadScene(sceneId);
+    }
+
+    public void ReturnHome(int sceneId) {
+        SceneManager.LoadScene(sceneId);
+    }
+
+    public void NextSystem() {
+        if (Settings.fuel > fuelPerJump) {
+            Settings.fuel -= fuelPerJump;
+            Settings.seed++;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }

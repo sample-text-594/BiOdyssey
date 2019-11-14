@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class FloraSettings : ScriptableObject {
     public int treesPerFace = 0;
-    public Mesh treeMesh;
+    public GameObject tree;
     public Material treeMaterial;
 
     public bool generateFlora = true;
@@ -14,7 +14,7 @@ public class FloraSettings : ScriptableObject {
         FloraSettings newFS = CreateInstance<FloraSettings>();
 
         newFS.treesPerFace = this.treesPerFace;
-        newFS.treeMesh = this.treeMesh;
+        newFS.tree = this.tree;
         newFS.treeMaterial = this.treeMaterial;
         newFS.generateFlora = this.generateFlora;
 

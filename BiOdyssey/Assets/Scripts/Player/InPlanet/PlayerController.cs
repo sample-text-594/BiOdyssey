@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
@@ -44,45 +45,47 @@ public class PlayerController : MonoBehaviour {
     }
     
     void Update() {
-        if (energy > 0) {
-            float vAxis = Input.GetAxis("Vertical");
-            float hAxis = Input.GetAxis("Horizontal");
+        float vAxis = Input.GetAxis("Vertical");
+        float hAxis = Input.GetAxis("Horizontal");
 
-            if (vAxis != 0.0f) {
-                if (boostActive) {
-                    transform.Rotate(new Vector3(0.0f, -vAxis * movementSpeed * boostSpeedMultiplier * Time.deltaTime, 0.0f));
+        if (energy < 0) {
+            ReturnToSystem();
+        }
 
-                    boostTimeLeft -= Time.deltaTime;
-                    if (boostTimeLeft < 0) {
-                        boostActive = false;
-                    }
-                } else {
-                    transform.Rotate(new Vector3(0.0f, -vAxis * movementSpeed * Time.deltaTime, 0.0f));
-                }
-                
-            }
+        if (vAxis != 0.0f) {
+            if (boostActive) {
+                transform.Rotate(new Vector3(0.0f, -vAxis * movementSpeed * boostSpeedMultiplier * Time.deltaTime, 0.0f));
 
-            if (hAxis != 0.0f) {
-                transform.Rotate(new Vector3(0.0f, 0.0f, -hAxis * rotationSpeed * Time.deltaTime));
-            }
-
-            RaycastHit hit;
-            if (Physics.Raycast(player.position, -player.up, out hit, baseElevation + elevationMargin, layerMask)) {
-                if (hit.distance < baseElevation) {
-                    player.localPosition = new Vector3(0.0f, 0.0f, player.localPosition.z - 0.1f * verticalSpeed * Time.deltaTime);
+                boostTimeLeft -= Time.deltaTime;
+                if (boostTimeLeft < 0) {
+                    boostActive = false;
                 }
             } else {
-                player.localPosition = new Vector3(0.0f, 0.0f, player.localPosition.z + 0.1f * verticalSpeed * Time.deltaTime);
+                transform.Rotate(new Vector3(0.0f, -vAxis * movementSpeed * Time.deltaTime, 0.0f));
             }
+                
+        }
 
-            ConsumeEnergy(0.1f * energyConsumeMultiplier * Time.deltaTime);
+        if (hAxis != 0.0f) {
+            transform.Rotate(new Vector3(0.0f, 0.0f, -hAxis * rotationSpeed * Time.deltaTime));
+        }
 
-            if (energy > 20 && Input.GetKeyDown(KeyCode.Space)) {
-                ConsumeEnergy(20);
-
-                boostActive = true;
-                boostTimeLeft = boostDuration;
+        RaycastHit hit;
+        if (Physics.Raycast(player.position, -player.up, out hit, baseElevation + elevationMargin, layerMask)) {
+            if (hit.distance < baseElevation) {
+                player.localPosition = new Vector3(0.0f, 0.0f, player.localPosition.z - 0.1f * verticalSpeed * Time.deltaTime);
             }
+        } else {
+            player.localPosition = new Vector3(0.0f, 0.0f, player.localPosition.z + 0.1f * verticalSpeed * Time.deltaTime);
+        }
+
+        ConsumeEnergy(0.1f * energyConsumeMultiplier * Time.deltaTime);
+
+        if (energy > 20 && Input.GetKeyDown(KeyCode.Space)) {
+            ConsumeEnergy(20);
+
+            boostActive = true;
+            boostTimeLeft = boostDuration;
         }
     }
 
@@ -101,5 +104,9 @@ public class PlayerController : MonoBehaviour {
         }
 
         energy -= quantity;
+    }
+
+    void ReturnToSystem() {
+        SceneManager.LoadScene(5);
     }
 }

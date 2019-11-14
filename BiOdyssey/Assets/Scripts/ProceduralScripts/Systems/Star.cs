@@ -10,7 +10,6 @@ public class Star : MonoBehaviour
 
     NameGenerator nameGenerator;
 
-    int seed;
     int numPlanets;
     float[] RotationSpeedArray;
     float[] OrbitDegreesArray;
@@ -22,12 +21,11 @@ public class Star : MonoBehaviour
 
     void Start()
     {
-        seed = PlayerPrefs.GetInt("seed", -1);
-        if (seed == -1) {
-            seed = 1;
+        if (Settings.seed == -1) {
+            Settings.seed = 1;
         }
 
-        Random.InitState(seed);
+        Random.InitState(Settings.seed);
 
         nameGenerator = new NameGenerator();
         gameObject.name = nameGenerator.generateName(1);
@@ -46,10 +44,10 @@ public class Star : MonoBehaviour
         {
             if (i != 0)
             {
-                distancesArray[i] = Random.Range(2, 6) + distancesArray[i - 1];
+                distancesArray[i] = Random.Range(5, 10) + distancesArray[i - 1];
             } else
             {
-                distancesArray[i] = Random.Range(1, 5) + scale/4;
+                distancesArray[i] = Random.Range(5, 10) + scale/4;
             }
             string name = gameObject.name;
             switch (i)
@@ -116,7 +114,7 @@ public class Star : MonoBehaviour
             p.floraSettings = planetSettings[randPlanet].floraSettings.Clone();
             p.floraSettings.generateFlora = false;
 
-            p.shapeSettings.noiseLayers[0].noiseSettings.simpleNoiseSettings.centre = new Vector3(seed * 10 + i, seed * 10 + i, seed * 10 + i);
+            p.shapeSettings.noiseLayers[0].noiseSettings.simpleNoiseSettings.centre = new Vector3(Settings.seed * 10 + i, Settings.seed * 10 + i, Settings.seed * 10 + i);
 
             p.GeneratePlanet();
 
@@ -129,8 +127,6 @@ public class Star : MonoBehaviour
             
             planet.AddComponent<BoxCollider>().size = new Vector3(5f, 5f, 5f);
         }
-
-        PlayerPrefs.SetInt("seed", ++seed);
     }
     
     void Update()

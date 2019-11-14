@@ -67,7 +67,6 @@ public class Planet : MonoBehaviour
                 meshObj.AddComponent<MeshRenderer>();
                 meshFilters[i] = meshObj.AddComponent<MeshFilter>();
                 meshFilters[i].sharedMesh = new Mesh();
-                meshObj.AddComponent<MeshCollider>();
             }
 
             meshFilters[i].GetComponent<MeshRenderer>().sharedMaterial = colourSettings.planetMaterial;
@@ -110,6 +109,9 @@ public class Planet : MonoBehaviour
         for (int i = 0; i < 6; i++) {
             if (meshFilters[i].gameObject.activeSelf) {
                 terrainFaces[i].CreateMesh();
+                if (!meshFilters[i].gameObject.GetComponent<MeshCollider>()) {
+                    meshFilters[i].gameObject.AddComponent<MeshCollider>();
+                }
             }
         }
 
