@@ -211,15 +211,11 @@ MonoBehaviour:
     m_Options:
     - m_Text: None
       m_Image: {fileID: 0}
-    - m_Text: Forest
+    - m_Text: Continents
       m_Image: {fileID: 0}
-    - m_Text: Ocean
+    - m_Text: Islands
       m_Image: {fileID: 0}
-    - m_Text: Desert
-      m_Image: {fileID: 0}
-    - m_Text: Jungle
-      m_Image: {fileID: 0}
-    - m_Text: Synthetic
+    - m_Text: Dunes
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -633,7 +629,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &154710262
 RectTransform:
   m_ObjectHideFlags: 0
@@ -651,7 +647,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -76}
+  m_AnchoredPosition: {x: 0, y: -30}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &154710263
@@ -898,6 +894,97 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 1
+--- !u!1 &267322589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 267322591}
+  - component: {fileID: 267322590}
+  m_Layer: 0
+  m_Name: Point Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &267322590
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267322589}
+  m_Enabled: 1
+  serializedVersion: 9
+  m_Type: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1403.9
+  m_Range: 1071
+  m_SpotAngle: 83.66558
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 1
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &267322591
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267322589}
+  m_LocalRotation: {x: -0, y: 0.9200378, z: -0, w: 0.3918298}
+  m_LocalPosition: {x: -76.5, y: 14.251999, z: 80.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 133.863, z: 0}
 --- !u!1 &274712813
 GameObject:
   m_ObjectHideFlags: 0
@@ -3589,7 +3676,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -30.600006}
+  m_AnchoredPosition: {x: 0, y: -30}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &896436581
@@ -4370,8 +4457,9 @@ GameObject:
   - component: {fileID: 1143575388}
   - component: {fileID: 1143575387}
   - component: {fileID: 1143575386}
+  - component: {fileID: 1143575389}
   m_Layer: 9
-  m_Name: Gasolinera
+  m_Name: GasStation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4449,6 +4537,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143575384}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1143575389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143575384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7344daf7ef7b08e4aaced6e2aa5aac09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeText: {fileID: 1247676839}
+  reduceTimeButton: {fileID: 896436579}
+  flyButton: {fileID: 154710261}
 --- !u!1 &1157850046
 GameObject:
   m_ObjectHideFlags: 0
@@ -5224,11 +5327,11 @@ MonoBehaviour:
   autoUpdate: 1
   generateNavMesh: 1
   faceRenderMask: 0
-  shapeSettings: {fileID: 11400000, guid: 9ae69897daf13b64da76d10cb27fc34e, type: 2}
+  shapeSettings: {fileID: 11400000, guid: 4a0d45faaf97c8c47b3fe1d88e24b2ab, type: 2}
   colourSettings: {fileID: 11400000, guid: 3ceb70aa994bd724dba5aacc2e7fdcb7, type: 2}
   floraSettings: {fileID: 11400000, guid: 27c6ff55244d4ae4ba973b2105b48705, type: 2}
-  shapeSettingsFoldout: 1
-  colourSettingsFoldout: 0
+  shapeSettingsFoldout: 0
+  colourSettingsFoldout: 1
   floraSettingsFoldout: 0
   meshFilters:
   - {fileID: 0}
@@ -5912,8 +6015,9 @@ GameObject:
   - component: {fileID: 1352877571}
   - component: {fileID: 1352877570}
   - component: {fileID: 1352877569}
+  - component: {fileID: 1352877572}
   m_Layer: 9
-  m_Name: Taller
+  m_Name: Docks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5991,6 +6095,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352877567}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1352877572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352877567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 572f12abef56e2e4bae698517286d9ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeText: {fileID: 2093125600}
+  reduceTimeButton: {fileID: 1642642316}
+  ship: {fileID: 0}
 --- !u!1 &1368087564
 GameObject:
   m_ObjectHideFlags: 0
@@ -7175,7 +7294,11 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Earth
       m_Image: {fileID: 0}
-    - m_Text: Acid
+    - m_Text: Desert
+      m_Image: {fileID: 0}
+    - m_Text: Ocean
+      m_Image: {fileID: 0}
+    - m_Text: Frozen
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7897,10 +8020,14 @@ MonoBehaviour:
   terrains:
   - {fileID: 11400000, guid: 4a0d45faaf97c8c47b3fe1d88e24b2ab, type: 2}
   - {fileID: 11400000, guid: 9ae69897daf13b64da76d10cb27fc34e, type: 2}
+  - {fileID: 11400000, guid: cb7a3429f9c7d9e4a85974ada014949b, type: 2}
+  - {fileID: 11400000, guid: e366d5bf99dfc554bb9ac2f61b5defe1, type: 2}
   colors:
   - {fileID: 11400000, guid: 3ceb70aa994bd724dba5aacc2e7fdcb7, type: 2}
   - {fileID: 11400000, guid: 34f2bcb379c60e644b4bb9cff63ee0f4, type: 2}
-  - {fileID: 11400000, guid: eebc9d414e6049a4195cfb80419a8ab6, type: 2}
+  - {fileID: 11400000, guid: 192ce0ecc16457449824ad885c14b3fd, type: 2}
+  - {fileID: 11400000, guid: 63a8108e2e7da3e499772cd2aae8d692, type: 2}
+  - {fileID: 11400000, guid: 312fb6d1a1b5a3346b9572f4b6b2d04f, type: 2}
   floras:
   - {fileID: 11400000, guid: 27c6ff55244d4ae4ba973b2105b48705, type: 2}
   - {fileID: 11400000, guid: 8cf958fc966bd474081d45a2e654e48d, type: 2}

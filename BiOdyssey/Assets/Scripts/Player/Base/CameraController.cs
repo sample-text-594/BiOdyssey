@@ -59,7 +59,7 @@ public class CameraController : MonoBehaviour {
                     uiPlanetEnabled = false;
 
                     transform.SetParent(hit.collider.transform);
-                    if (hit.collider.name.Equals("Gasolinera")) {
+                    if (hit.collider.name.Equals("GasStation")) {
                         uiGasolineraEnabled = true;
                         StartAnimation(transform, gasolineraViewTransform);
                     } else {
