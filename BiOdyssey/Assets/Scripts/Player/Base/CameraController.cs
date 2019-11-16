@@ -66,6 +66,9 @@ public class CameraController : MonoBehaviour {
                         uiTallerEnabled = true;
                         StartAnimation(transform, tallerViewTransform);
                     }
+
+                    canRotate = false;
+                    canInteract = false;
                 }
             }
         }
@@ -91,6 +94,9 @@ public class CameraController : MonoBehaviour {
 
             if (uiPlanetEnabled != uiPlanet.activeSelf) {
                 uiPlanet.SetActive(uiPlanetEnabled);
+
+                canRotate = true;
+                canInteract = true;
             }
 
             if (uiGasolineraEnabled != uiGasolinera.activeSelf) {
@@ -104,5 +110,23 @@ public class CameraController : MonoBehaviour {
             transform.localPosition = Vector3.Lerp(initAnimPos, endAnim.localPosition, (Time.time - startTime) / animationDuration);
             transform.localRotation = Quaternion.Lerp(initAnimRot, endAnim.localRotation, (Time.time - startTime) / animationDuration);
         }
+    }
+
+    public void Return() {
+        transform.SetParent(null);
+
+        if (uiGasolineraEnabled) {
+            uiGasolineraEnabled = false;
+            uiGasolinera.SetActive(false);
+        }
+
+        if (uiTallerEnabled) {
+            uiTallerEnabled = false;
+            uiTaller.SetActive(false);
+        }
+
+        uiPlanetEnabled = true;
+
+        StartAnimation(transform, originalTransform);
     }
 }
