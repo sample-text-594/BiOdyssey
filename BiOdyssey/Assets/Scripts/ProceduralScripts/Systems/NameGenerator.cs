@@ -6,7 +6,6 @@ public class NameGenerator {
 
     public string generateName(int seed)
     {
-        Debug.Log(seed);
         string name;
         seed--;
         string[] planetArray = { "Gliese-", "HD ", "Kepler-", "HIP ", "SN ", "Hubble-", "PSR ", "IRAS-" };
