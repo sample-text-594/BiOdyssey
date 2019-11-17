@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class NameGenerator {
 
-    const int NUM_NOMBRES = 10;
-    const int NUM_NUMBERS = 100000;
-
     public string generateName(int seed)
     {
-        string[] planetArray = {"Gliese-", "HD ", "Kepler-", "HIP ", "SN ", "Hubble-", "WR ", "R ", "PSR ", "IRAS-"};
-        string nombre = planetArray[Random.Range(0, NUM_NOMBRES)];
-        return nombre + Random.Range(0, NUM_NUMBERS);
+        Debug.Log(seed);
+        string name;
+        seed--;
+        string[] planetArray = { "Gliese-", "HD ", "Kepler-", "HIP ", "SN ", "Hubble-", "PSR ", "IRAS-" };
+        string[] namesArray = { "/Alpha/", "/Beta/", "/Phi/", "/Omega/", "/Theta/", "/Lambda/", "/Epsilon/", "/Sigma/", "/Kappa/", "/Delta/"};
+        name = planetArray[seed / 1000000];
+        seed /= 10;
+        name += (seed % 100).ToString();
+        seed /= 100;
+        name += namesArray[seed % 10];
+        name += (seed / 10).ToString();
+        return name;
     }
 }
