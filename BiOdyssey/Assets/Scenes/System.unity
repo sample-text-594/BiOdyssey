@@ -1408,6 +1408,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   planetSettings:
   - {fileID: 11400000, guid: 477e2ef3982c8e94a92905df7b7690a3, type: 2}
+  camera: {fileID: 1848554187}
 --- !u!1 &1129219055
 GameObject:
   m_ObjectHideFlags: 0
@@ -2495,7 +2496,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1848554184}
   m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: 0, y: 153, z: -205}
+  m_LocalPosition: {x: 0, y: 263, z: -214}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

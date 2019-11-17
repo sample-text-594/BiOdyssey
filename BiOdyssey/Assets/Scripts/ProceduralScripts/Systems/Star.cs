@@ -31,7 +31,7 @@ public class Star : MonoBehaviour
         nameGenerator = new NameGenerator();
         gameObject.name = nameGenerator.generateName(Settings.seed);
         float scale = Random.Range(1, 101) / 10.0f;
-        camera.position = new Vector3 (0, 26 + 15 * scale, -26 -15 * scale);
+        camera.position = new Vector3 (0, 26 + 20 * scale, -26 -20 * scale);
         transform.localScale = new Vector3(scale, scale, scale);
         sunLightColor = grad.Evaluate(scale/10);
 
