@@ -16,7 +16,7 @@ public class Star : MonoBehaviour
     float[] distancesArray;
     Transform[] planetoidTransformArray;
     Transform[] planetTransformArray;
-    public Transform camera;
+    public Transform cam;
 
     Color sunLightColor;
 
@@ -30,8 +30,8 @@ public class Star : MonoBehaviour
 
         nameGenerator = new NameGenerator();
         gameObject.name = nameGenerator.generateName(Settings.seed);
-        float scale = Random.Range(1, 101) / 10.0f;
-        camera.position = new Vector3 (0, 26 + 20 * scale, -26 -20 * scale);
+        float scale = Random.Range(10, 101) / 10.0f;
+        cam.position = new Vector3 (0, 26 + 20 * scale, -26 -20 * scale);
         transform.localScale = new Vector3(scale, scale, scale);
         sunLightColor = grad.Evaluate(scale/10);
 
