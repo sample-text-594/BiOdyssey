@@ -363,11 +363,11 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Forest
       m_Image: {fileID: 0}
-    - m_Text: Ocean
-      m_Image: {fileID: 0}
     - m_Text: Desert
       m_Image: {fileID: 0}
-    - m_Text: Jungle
+    - m_Text: Ocean
+      m_Image: {fileID: 0}
+    - m_Text: Frozen
       m_Image: {fileID: 0}
     - m_Text: Synthetic
       m_Image: {fileID: 0}
@@ -8031,6 +8031,10 @@ MonoBehaviour:
   floras:
   - {fileID: 11400000, guid: 27c6ff55244d4ae4ba973b2105b48705, type: 2}
   - {fileID: 11400000, guid: 8cf958fc966bd474081d45a2e654e48d, type: 2}
+  - {fileID: 11400000, guid: 4d48fccf603b50742ad8c946bdd3eff5, type: 2}
+  - {fileID: 11400000, guid: 370bcc627ffbcc544aa02111fe0c080f, type: 2}
+  - {fileID: 11400000, guid: ed2a0d45f0059f54b82372894bcd45e6, type: 2}
+  - {fileID: 11400000, guid: 67e3e500e8ddb9540b32253809f938f1, type: 2}
 --- !u!1 &1789965451
 GameObject:
   m_ObjectHideFlags: 0

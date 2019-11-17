@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b981c23910453a24ebcff829c62ad219, type: 3}
-  m_Name: ForestFlora
+  m_Name: FrozenFlora
   m_EditorClassIdentifier: 
   treesPerFace: 200
-  tree: {fileID: 1625110378764506599, guid: 7f6cd3c531fc474459cc5df14b3553cc, type: 3}
-  treeMaterial: {fileID: 2100000, guid: 013dd412d79176049a247bc2fa131705, type: 2}
+  tree: {fileID: 7469187330580115140, guid: 638aa9a448968ed4b946a6884bf7d3ae, type: 3}
   generateFlora: 1

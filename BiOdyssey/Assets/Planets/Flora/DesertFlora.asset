@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b981c23910453a24ebcff829c62ad219, type: 3}
-  m_Name: ForestFlora
+  m_Name: DesertFlora
   m_EditorClassIdentifier: 
   treesPerFace: 200
-  tree: {fileID: 1625110378764506599, guid: 7f6cd3c531fc474459cc5df14b3553cc, type: 3}
-  treeMaterial: {fileID: 2100000, guid: 013dd412d79176049a247bc2fa131705, type: 2}
+  tree: {fileID: 7578796316135131721, guid: 3d4e12597d16747459276b24fa05c63e, type: 3}
   generateFlora: 1
