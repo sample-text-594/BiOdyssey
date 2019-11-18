@@ -7,6 +7,7 @@ public class Star : MonoBehaviour
     public Mesh mesh;
     public Gradient grad;
     public PlanetSettings[] planetSettings;
+    public Transform cameraReference;
 
     NameGenerator nameGenerator;
 
@@ -16,7 +17,6 @@ public class Star : MonoBehaviour
     float[] distancesArray;
     Transform[] planetoidTransformArray;
     Transform[] planetTransformArray;
-    public Transform cam;
 
     Color sunLightColor;
 
@@ -31,7 +31,10 @@ public class Star : MonoBehaviour
         nameGenerator = new NameGenerator();
         gameObject.name = nameGenerator.generateName(Settings.seed);
         float scale = Random.Range(10, 101) / 10.0f;
-        cam.position = new Vector3 (0, 26 + 20 * scale, -26 -20 * scale);
+
+        Camera.main.transform.position = new Vector3 (0, 26 + 20 * scale, -26 -20 * scale);
+        cameraReference.position = new Vector3(0, 26 + 20 * scale, -26 - 20 * scale);
+
         transform.localScale = new Vector3(scale, scale, scale);
         sunLightColor = grad.Evaluate(scale/10);
 
@@ -108,9 +111,10 @@ public class Star : MonoBehaviour
             moonLight.transform.SetParent(planetoid.transform);
 
             Planet p = planet.AddComponent<Planet>();
-            int randPlanet = 0;
+            int randPlanet = Random.Range(0, planetSettings.Length);
 
             p.resolution = 40;
+            p.generateNavMesh = false;
             p.shapeSettings = planetSettings[randPlanet].shapeSettings.Clone();
             p.colourSettings = planetSettings[randPlanet].colourSettings.Clone();
             p.floraSettings = planetSettings[randPlanet].floraSettings.Clone();

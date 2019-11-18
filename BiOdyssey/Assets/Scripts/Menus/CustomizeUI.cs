@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CustomizeUI : MonoBehaviour {
     public CameraController cameraController;
@@ -57,5 +58,9 @@ public class CustomizeUI : MonoBehaviour {
 
     public void generatePlanet() {
         planet.GeneratePlanet();
+    }
+
+    public void Return(int sceneId) {
+        SceneManager.LoadScene(sceneId);
     }
 }

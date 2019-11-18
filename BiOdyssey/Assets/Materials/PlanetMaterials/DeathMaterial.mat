@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3130975766616721790
+--- !u!114 &-6819091679346113355
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlanetMaterial
+  m_Name: DeathMaterial
   m_Shader: {fileID: -6465566751694194690, guid: 8b702c6dc4e18874299fd0588f2ccd82,
     type: 3}
   m_ShaderKeywords: 
@@ -57,10 +57,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _OceanTex:
-        m_Texture: {fileID: 2800000, guid: 24ba6fba4c09c9a40a54dbb174330efd, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -79,7 +75,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_48F9BDDE: 0.73
-    - Vector1_9C22D5: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -102,12 +97,10 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _oceanTexScale: 60
-    - _ocenaTexScale: 1
     - _terrainTexScale: 30
-    - _textureScale: 1
     m_Colors:
-    - _BaseColor: {r: 0.22296469, g: 0.6509434, b: 0.11974903, a: 1}
+    - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _elevationMinMax: {r: -0.42412633, g: -0.21969137, b: 0, a: 0}
+    - _elevationMinMax: {r: -0.015089608, g: 0.04592896, b: 0, a: 0}

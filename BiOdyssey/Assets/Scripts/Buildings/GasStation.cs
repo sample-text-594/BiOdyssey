@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GasStation : MonoBehaviour {
@@ -25,7 +26,7 @@ public class GasStation : MonoBehaviour {
 
         //Comprobar cuanto tiempo ha pasado desde la ultima vez
         //Settings.timeLeftFill = tiempoRestante
-        Settings.timeLeftFill = 3720;
+        Settings.timeLeftFill = 40;
 
         hours = Settings.timeLeftFill / 3600;
         minutes = (Settings.timeLeftFill % 3600) / 60;
@@ -66,6 +67,9 @@ public class GasStation : MonoBehaviour {
         } else {
             if (!done) {
                 done = true;
+
+                reduceTimeButton.SetActive(false);
+                flyButton.SetActive(true);
             }
         }
     }
@@ -81,5 +85,9 @@ public class GasStation : MonoBehaviour {
             : "0" + seconds;
 
         timeText.SetText(time);
+    }
+
+    public void Fly(int sceneId) {
+        SceneManager.LoadScene(sceneId);
     }
 }

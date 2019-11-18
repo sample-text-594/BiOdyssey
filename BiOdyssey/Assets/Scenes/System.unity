@@ -840,7 +840,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1408,7 +1408,13 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   planetSettings:
   - {fileID: 11400000, guid: 477e2ef3982c8e94a92905df7b7690a3, type: 2}
-  cam: {fileID: 1848554187}
+  - {fileID: 11400000, guid: 19ab9e02f1888ce44b89dd5bcf773124, type: 2}
+  - {fileID: 11400000, guid: 759474de22dded64f858eb11815fa76b, type: 2}
+  - {fileID: 11400000, guid: b5084beb55de0684ca3c3542f4fce776, type: 2}
+  - {fileID: 11400000, guid: 3c8be28d671dd7440b22ceb64664f608, type: 2}
+  - {fileID: 11400000, guid: b6cfe27d6efef0a4da9cf4547dc86828, type: 2}
+  - {fileID: 11400000, guid: 8da02dc847439324aa32f2f3b2dda324, type: 2}
+  cameraReference: {fileID: 1416468383}
 --- !u!1 &1129219055
 GameObject:
   m_ObjectHideFlags: 0
@@ -1497,7 +1503,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 6
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
