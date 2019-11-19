@@ -25,19 +25,20 @@ public class GoToPlanet : MonoBehaviour {
 
     bool animate;
     bool uiPlanetEnabled;
-    bool uiSystemEnabled;
+    [HideInInspector]
+    public bool uiSystemEnabled;
     float startTime;
 
     void Start() {
         animate = false;
         uiPlanetEnabled = false;
-        uiSystemEnabled = true;
+        uiSystemEnabled = false;
 
         fuel.value = Settings.fuel;
     }
 
     void Update() {
-        if (Input.GetMouseButtonDown(0) && !uiPlanetEnabled) {
+        if (Input.GetMouseButtonDown(0) && uiSystemEnabled) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             RaycastHit hit;
