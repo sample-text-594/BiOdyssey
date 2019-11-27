@@ -58,19 +58,19 @@ public class Star : MonoBehaviour
             switch (i)
             {
                 case 0:
-                    name += "b";
+                    name += "-b";
                     break;
                 case 1:
-                    name += "c";
+                    name += "-c";
                     break;
                 case 2:
-                    name += "d";
+                    name += "-d";
                     break;
                 case 3:
-                    name += "e";
+                    name += "-e";
                     break;
                 case 4:
-                    name += "f";
+                    name += "-f";
                     break;
             }
 
@@ -169,5 +169,34 @@ public class Star : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void RenameStar(string newName) {
+        gameObject.name = newName;
+
+        for (int i = 0; i < planetoidTransformArray.Length; i++) {
+            switch (i) {
+                case 0:
+                    planetoidTransformArray[i].gameObject.name = newName + "-b";
+                    planetTransformArray[i].gameObject.name = newName + "-b";
+                    break;
+                case 1:
+                    planetoidTransformArray[i].gameObject.name = newName + "-c";
+                    planetTransformArray[i].gameObject.name = newName + "-c";
+                    break;
+                case 2:
+                    planetoidTransformArray[i].gameObject.name = newName + "-d";
+                    planetTransformArray[i].gameObject.name = newName + "-d";
+                    break;
+                case 3:
+                    planetoidTransformArray[i].gameObject.name = newName + "-e";
+                    planetTransformArray[i].gameObject.name = newName + "-e";
+                    break;
+                case 4:
+                    planetoidTransformArray[i].gameObject.name = newName + "-f";
+                    planetTransformArray[i].gameObject.name = newName + "-f";
+                    break;
+            }
+        }
     }
 }
