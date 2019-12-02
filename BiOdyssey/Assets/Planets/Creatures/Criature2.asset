@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c21ad843caee9942b803c0e235ff313, type: 3}
   m_Name: Criature2
   m_EditorClassIdentifier: 
+  creaturePrefab: {fileID: 2920233490990167997, guid: eeb0a602014687043853bd31df58766c,
+    type: 3}
   part1:
   - {fileID: -927199367670048503, guid: 363b10d5ed4ee0947a36e8f8d064708b, type: 3}
   - {fileID: -927199367670048503, guid: 2a150e89d54104647b86eb2b0bfc78b9, type: 3}

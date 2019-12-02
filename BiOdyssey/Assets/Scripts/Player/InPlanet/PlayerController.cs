@@ -18,13 +18,19 @@ public class PlayerController : MonoBehaviour {
     public Slider[] energyBars;
     public float energyConsumeMultiplier = 1;
 
-    int layerMask;
+    public GameObject scanner;
+    public float scanDuration = 1;
+
+    int colissionLayerMask;
 
     public float energy;
     int actualEnergyBar;
 
     bool boostActive;
     float boostTimeLeft;
+
+    bool scanActive;
+    float scanTimeLeft;
 
     Transform player;
     float planetRadius;
@@ -35,21 +41,38 @@ public class PlayerController : MonoBehaviour {
 
         player.localPosition = new Vector3(0.0f, 0.0f, -planetRadius - baseElevation);
 
-        layerMask = 1 << 8;
+        colissionLayerMask = 1 << 8;
 
         energy = 100;
         actualEnergyBar = energyBars.Length - 1;
 
         boostActive = false;
         boostTimeLeft = 0.0f;
+
+        scanActive = false;
+        scanTimeLeft = 0.0f;
     }
     
     void Update() {
         float vAxis = Input.GetAxis("Vertical");
         float hAxis = Input.GetAxis("Horizontal");
+        bool scanPressed = Input.GetKeyDown(KeyCode.E);
 
         if (energy < 0) {
             ReturnToSystem();
+        }
+        
+        if (scanActive) {
+            scanTimeLeft -= Time.deltaTime;
+            if (scanTimeLeft < 0) {
+                scanner.SetActive(false);
+                scanActive = false;
+            }
+        }
+        if (scanPressed && !scanActive) {
+            scanner.SetActive(true);
+            scanTimeLeft = scanDuration;
+            scanActive = true;
         }
 
         if (vAxis != 0.0f) {
@@ -71,7 +94,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         RaycastHit hit;
-        if (Physics.Raycast(player.position, -player.up, out hit, baseElevation + elevationMargin, layerMask)) {
+        if (Physics.Raycast(player.position, -player.up, out hit, baseElevation + elevationMargin, colissionLayerMask)) {
             if (hit.distance < baseElevation) {
                 player.localPosition = new Vector3(0.0f, 0.0f, player.localPosition.z - 0.1f * verticalSpeed * Time.deltaTime);
             }
@@ -108,5 +131,11 @@ public class PlayerController : MonoBehaviour {
 
     void ReturnToSystem() {
         SceneManager.LoadScene(6);
+    }
+
+    public void OnScan(Collider other) {
+        if (scanActive) {
+            Debug.Log("Escaneado");
+        }
     }
 }

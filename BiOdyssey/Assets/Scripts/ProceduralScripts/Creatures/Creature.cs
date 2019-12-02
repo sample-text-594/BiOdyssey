@@ -4,6 +4,8 @@ using UnityEngine;
 
 [CreateAssetMenu]
 public class Creature : ScriptableObject {
+    public GameObject creaturePrefab;
+
     public GameObject[] part1;
     public GameObject[] part2;
     public GameObject[] part3;
