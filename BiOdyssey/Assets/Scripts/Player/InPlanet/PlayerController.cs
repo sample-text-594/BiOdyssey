@@ -107,6 +107,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     void ReturnToSystem() {
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(6);
     }
 }

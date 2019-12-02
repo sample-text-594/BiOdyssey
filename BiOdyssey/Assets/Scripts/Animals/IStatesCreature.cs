@@ -4,5 +4,5 @@ using UnityEngine;
 
 //Interfaz del pulpo.
 public interface IStatesCreature {
-    IStatesCreature Update(Creature o);
+    IStatesCreature Update(CreatureController o);
 }

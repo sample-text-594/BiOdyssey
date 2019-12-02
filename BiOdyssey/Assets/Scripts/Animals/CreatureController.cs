@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Creature : MonoBehaviour {
+public class CreatureController : MonoBehaviour {
 
     IStatesCreature state;
 
@@ -14,7 +14,10 @@ public class Creature : MonoBehaviour {
     public NavMeshAgent agent;
 
     void Start() {
+        wanderState = new CreatureStateWander();
         state = wanderState;
+
+        agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame

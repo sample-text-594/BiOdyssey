@@ -7,6 +7,7 @@ public class FloraSettings : ScriptableObject {
     public int treesPerFace = 0;
     public GameObject tree;
 
+    public bool scannable = false;
     public bool generateFlora = true;
 
     public FloraSettings Clone() {
@@ -15,6 +16,7 @@ public class FloraSettings : ScriptableObject {
         newFS.treesPerFace = this.treesPerFace;
         newFS.tree = this.tree;
         newFS.generateFlora = this.generateFlora;
+        newFS.scannable = this.scannable;
 
         return newFS;
     }

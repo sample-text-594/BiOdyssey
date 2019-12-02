@@ -7,7 +7,7 @@ public class CreatureStateWander : IStatesCreature {
     //Atributo de velocidad.
     public int speed = 3;
 
-    public IStatesCreature Update(Creature c) {
+    public IStatesCreature Update(CreatureController c) {
 
         c.agent.speed = speed;
 

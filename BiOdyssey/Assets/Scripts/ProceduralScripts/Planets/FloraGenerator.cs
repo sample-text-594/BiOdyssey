@@ -23,6 +23,11 @@ public class FloraGenerator {
         for (int i = 0; i < meshFilters.Length; i++) {
             if (meshFilters[i] == null) {
                 GameObject meshObj = GameObject.Instantiate(settings.tree);
+
+                if (settings.scannable) {
+                    meshObj.layer = 10;
+                }
+
                 meshObj.transform.parent = flora.transform;
                 meshObj.transform.localPosition = new Vector3(0f, 0f, 0f);
 
