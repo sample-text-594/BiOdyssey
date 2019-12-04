@@ -19,6 +19,8 @@ public class GoToPlanet : MonoBehaviour {
 
     public float fuelPerJump = 0.2f;
 
+    public SceneLoader sl;
+
     Vector3 initAnimPos;
     Quaternion initAnimRot;
     Transform endAnim;
@@ -121,14 +123,14 @@ public class GoToPlanet : MonoBehaviour {
         }
     }
 
-    public void Fly(int sceneId) {
+    public void Fly() {
         Planet p = gameObject.GetComponentInParent<Planet>();
 
         Settings.planetSettings.shapeSettings = p.shapeSettings;
         Settings.planetSettings.colourSettings = p.colourSettings;
         Settings.planetSettings.floraSettings = p.floraSettings;
 
-        SceneManager.LoadScene(sceneId);
+        sl.LoadScene();
     }
 
     public void ReturnHome(int sceneId) {

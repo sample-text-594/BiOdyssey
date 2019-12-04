@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour {
     public GameObject scanner;
     public float scanDuration = 1;
 
+    public SceneLoader sl;
+
     int colissionLayerMask;
 
     public float energy;
@@ -130,7 +132,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void ReturnToSystem() {
-        SceneManager.LoadScene(6);
+        sl.LoadScene();
     }
 
     public void OnScan(Collider other) {
