@@ -31,7 +31,7 @@ public class GoToPlanet : MonoBehaviour {
     public bool uiSystemEnabled;
     float startTime;
 
-    void Start() {
+    public void GtpStart() {
         animate = false;
         uiPlanetEnabled = false;
         uiSystemEnabled = false;
@@ -130,6 +130,10 @@ public class GoToPlanet : MonoBehaviour {
         Settings.planetSettings.colourSettings = p.colourSettings;
         Settings.planetSettings.floraSettings = p.floraSettings;
 
+        Settings.actualPlanet = ((int)p.shapeSettings.noiseLayers[0].noiseSettings.simpleNoiseSettings.centre.x) % 10;
+
+        Settings.returningFromPlanet = true;
+
         sl.LoadScene();
     }
 
@@ -140,7 +144,10 @@ public class GoToPlanet : MonoBehaviour {
     public void NextSystem() {
         if (Settings.fuel > fuelPerJump) {
             Settings.fuel -= fuelPerJump;
-            Settings.seed++;
+            Settings.system.seed++;
+
+            Settings.returningFromPlanet = false;
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }

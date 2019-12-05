@@ -8,6 +8,8 @@ public class Star : MonoBehaviour
     public Gradient grad;
     public PlanetSettings[] planetSettings;
     public Transform cameraReference;
+    public DiscoverSystem ds;
+    public GoToPlanet gtp;
 
     NameGenerator nameGenerator;
 
@@ -22,14 +24,38 @@ public class Star : MonoBehaviour
 
     void Start()
     {
-        if (Settings.seed == -1) {
-            Settings.seed = 1;
+        if (Settings.system.Equals(default(SystemStruct))) {
+            Settings.system.seed = 1;
+
+            Settings.system.planets = new PlanetStruct[5];
+            for (int i = 0; i < 5; i++) {
+                Settings.system.planets[i].creatures = new string[3];
+                Settings.system.planets[i].creatureNames = new string[3];
+            }
         }
 
-        Random.InitState(Settings.seed);
+        if (!Settings.returningFromPlanet) {
+            //Comprobar si el sistema existe en la base de datos
+            //TODO
+
+            //Si existe lo recreamos
+            //TODO
+
+            //Si no existe inicializamos los campos por defecto
+            Settings.system.name = "";
+
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 3; j++) {
+                    Settings.system.planets[i].creatures[j] = "";
+                    Settings.system.planets[i].creatureNames[j] = "";
+                }
+            }
+        }
+
+        Random.InitState(Settings.system.seed);
 
         nameGenerator = new NameGenerator();
-        gameObject.name = nameGenerator.generateName(Settings.seed);
+        gameObject.name = nameGenerator.generateName(Settings.system.seed);
         float scale = Random.Range(10, 101) / 10.0f;
 
         Camera.main.transform.position = new Vector3 (0, 26 + 20 * scale, -26 -20 * scale);
@@ -120,7 +146,7 @@ public class Star : MonoBehaviour
             p.floraSettings = planetSettings[randPlanet].floraSettings.Clone();
             p.floraSettings.generateFlora = false;
 
-            p.shapeSettings.noiseLayers[0].noiseSettings.simpleNoiseSettings.centre = new Vector3(Settings.seed * 10 + i, Settings.seed * 10 + i, Settings.seed * 10 + i);
+            p.shapeSettings.noiseLayers[0].noiseSettings.simpleNoiseSettings.centre = new Vector3(Settings.system.seed * 10 + i, Settings.system.seed * 10 + i, Settings.system.seed * 10 + i);
 
             p.GeneratePlanet();
 
@@ -132,6 +158,12 @@ public class Star : MonoBehaviour
             RotationSpeedArray[i] = Random.Range(0, 101);
             
             planet.AddComponent<BoxCollider>().size = new Vector3(5f, 5f, 5f);
+        }
+
+        gtp.GtpStart();
+        ds.DiscoverStar();
+        if (Settings.returningFromPlanet) {
+            ds.Skip();
         }
     }
     

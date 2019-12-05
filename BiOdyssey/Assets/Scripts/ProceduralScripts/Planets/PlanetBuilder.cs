@@ -26,85 +26,80 @@ public class PlanetBuilder : MonoBehaviour {
         GameObject g = new GameObject("creatures");
         g.transform.SetParent(p.transform);
 
-        for (int i = 0; i < spawners.Length; i++) {
+        for (int i = 0; i < spawners.Length; i += 2) {
             GameObject creature;
-            Color col;
 
-            if (i % 2 == 0) {
-                creature = Instantiate(creatures[0].creaturePrefab);
-
-                int rand = Random.Range(0, 5);
-                Instantiate(creatures[0].part1[rand]).transform.SetParent(creature.transform);
-                creature.name = "" + rand;
-
-                rand = Random.Range(0, 5);
-                Instantiate(creatures[0].part2[rand]).transform.SetParent(creature.transform);
-                creature.name += rand;
-
-                rand = Random.Range(0, 5);
-                Instantiate(creatures[0].part3[rand]).transform.SetParent(creature.transform);
-                creature.name += rand;
-
-                rand = Random.Range(0, 5);
-                Instantiate(creatures[0].part4[rand]).transform.SetParent(creature.transform);
-                creature.name += rand;
-
-                rand = Random.Range(0, 5);
-                Instantiate(creatures[0].part5[rand]).transform.SetParent(creature.transform);
-                creature.name += rand;
-
-                col = creature1Colors.Evaluate(Random.Range(0f, 1f));
+            if (Settings.system.planets[Settings.actualPlanet].creatures[i / 2].Equals("")) {
+                creature = BuildCreatureRandom();
+                Settings.system.planets[Settings.actualPlanet].creatures[i / 2] = creature.name;
             } else {
-                creature = Instantiate(creatures[1].creaturePrefab);
-
-                int rand = Random.Range(0, 5);
-                Instantiate(creatures[1].part1[rand]).transform.SetParent(creature.transform);
-                creature.name = "" + rand;
-
-                rand = Random.Range(0, 5);
-                Instantiate(creatures[1].part2[rand]).transform.SetParent(creature.transform);
-                creature.name += rand;
-
-                rand = Random.Range(0, 5);
-                Instantiate(creatures[1].part3[rand]).transform.SetParent(creature.transform);
-                creature.name += rand;
-
-                rand = Random.Range(0, 5);
-                Instantiate(creatures[1].part4[rand]).transform.SetParent(creature.transform);
-                creature.name += rand;
-
-                rand = Random.Range(0, 5);
-                Instantiate(creatures[1].part5[rand]).transform.SetParent(creature.transform);
-                creature.name += rand;
-
-                col = creature2Colors.Evaluate(Random.Range(0f, 1f));
+                creature = BuildCreatureRandom();
+                Settings.system.planets[Settings.actualPlanet].creatures[i / 2] = creature.name;
             }
 
-            creature.transform.SetParent(g.transform);
-            creature.transform.position = spawners[i].position;
-            if (i == 5) {
-                creature.transform.localEulerAngles = new Vector3(creature.transform.localEulerAngles.x + 180, creature.transform.localEulerAngles.y, creature.transform.localEulerAngles.z);
-            }
+            for (int j = 0; j < 2; j++) {
+                creature.transform.SetParent(g.transform);
+                creature.transform.position = spawners[i + j].position;
+                if (i + j == 5) {
+                    creature.transform.localEulerAngles = new Vector3(creature.transform.localEulerAngles.x + 180, creature.transform.localEulerAngles.y, creature.transform.localEulerAngles.z);
+                }
 
-            NavMeshAgent nma = creature.GetComponent<NavMeshAgent>();
-            nma.Warp(creature.transform.position);
-            nma.updateUpAxis = true;
+                NavMeshAgent nma = creature.GetComponent<NavMeshAgent>();
+                nma.Warp(creature.transform.position);
+                nma.updateUpAxis = true;
+
+                for (int k = 0; k < Random.Range(2, 4); k++) {
+                    nma = Instantiate(creature).GetComponent<NavMeshAgent>();
+                    nma.Warp(nma.transform.position);
+                    nma.updateUpAxis = true;
+
+                    nma.transform.SetParent(g.transform);
+                }
+            }
+        }
+    }
+
+    GameObject BuildCreatureRandom() {
+        GameObject creature;
+        Color col;
+
+        int type = Random.Range(0, 2);
+        creature = Instantiate(creatures[type].creaturePrefab);
+
+        int rand = Random.Range(0, 5);
+        Instantiate(creatures[type].part1[rand]).transform.SetParent(creature.transform);
+        creature.name = "" + type + rand;
+
+        rand = Random.Range(0, 5);
+        Instantiate(creatures[type].part2[rand]).transform.SetParent(creature.transform);
+        creature.name += rand;
+
+        rand = Random.Range(0, 5);
+        Instantiate(creatures[type].part3[rand]).transform.SetParent(creature.transform);
+        creature.name += rand;
+
+        rand = Random.Range(0, 5);
+        Instantiate(creatures[type].part4[rand]).transform.SetParent(creature.transform);
+        creature.name += rand;
+
+        rand = Random.Range(0, 5);
+        Instantiate(creatures[type].part5[rand]).transform.SetParent(creature.transform);
+        creature.name += rand;
+
+        if (type == 0) {
+            col = creature1Colors.Evaluate(Random.Range(0f, 1f));
 
             foreach (MeshRenderer m in creature.GetComponentsInChildren<MeshRenderer>()) {
                 m.material.SetColor("_BaseColor", col);
             }
+        } else {
+            col = creature2Colors.Evaluate(Random.Range(0f, 1f));
 
             foreach (SkinnedMeshRenderer m in creature.GetComponentsInChildren<SkinnedMeshRenderer>()) {
                 m.material.SetColor("_BaseColor", col);
             }
-
-            for (int j = 0; j < Random.Range(2, 4); j++) {
-                nma = Instantiate(creature).GetComponent<NavMeshAgent>();
-                nma.Warp(nma.transform.position);
-                nma.updateUpAxis = true;
-
-                nma.transform.SetParent(g.transform);
-            }
         }
+
+        return creature;
     }
 }

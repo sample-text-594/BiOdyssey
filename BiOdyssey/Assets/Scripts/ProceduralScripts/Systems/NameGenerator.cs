@@ -7,7 +7,6 @@ public class NameGenerator {
     public string generateName(int seed)
     {
         string name;
-        seed--;
         string[] planetArray = { "Gliese-", "HD ", "Kepler-", "HIP ", "SN ", "Hubble-", "PSR ", "IRAS-" };
         string[] namesArray = { "/Alpha/", "/Beta/", "/Phi/", "/Omega/", "/Theta/", "/Lambda/", "/Epsilon/", "/Sigma/", "/Kappa/", "/Delta/"};
         name = planetArray[seed / 1000000];

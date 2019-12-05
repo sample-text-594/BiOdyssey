@@ -20,9 +20,9 @@ public class DiscoverSystem : MonoBehaviour {
 
     bool isDiscovered;
 
-    void Start() {
+    public void DiscoverStar() {
         //Comprobar en la base de datos si el sistema ya esta descubierto
-        isDiscovered = false;
+        isDiscovered = !Settings.system.name.Equals("");
 
         if (isDiscovered) {
             renameButton.SetActive(false);

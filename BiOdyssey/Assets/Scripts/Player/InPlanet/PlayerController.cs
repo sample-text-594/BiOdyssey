@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour {
     public float scanDuration = 1;
 
     public SceneLoader sl;
+    public GameObject uiDiscover;
+    public DiscoverCreature dc;
 
     int colissionLayerMask;
 
@@ -56,61 +58,63 @@ public class PlayerController : MonoBehaviour {
     }
     
     void Update() {
-        float vAxis = Input.GetAxis("Vertical");
-        float hAxis = Input.GetAxis("Horizontal");
-        bool scanPressed = Input.GetKeyDown(KeyCode.E);
+        if (!uiDiscover.activeSelf) {
+            float vAxis = Input.GetAxis("Vertical");
+            float hAxis = Input.GetAxis("Horizontal");
+            bool scanPressed = Input.GetKeyDown(KeyCode.E);
 
-        if (energy < 0) {
-            ReturnToSystem();
-        }
-        
-        if (scanActive) {
-            scanTimeLeft -= Time.deltaTime;
-            if (scanTimeLeft < 0) {
-                scanner.SetActive(false);
-                scanActive = false;
+            if (energy < 0) {
+                ReturnToSystem();
             }
-        }
-        if (scanPressed && !scanActive) {
-            scanner.SetActive(true);
-            scanTimeLeft = scanDuration;
-            scanActive = true;
-        }
 
-        if (vAxis != 0.0f) {
-            if (boostActive) {
-                transform.Rotate(new Vector3(0.0f, -vAxis * movementSpeed * boostSpeedMultiplier * Time.deltaTime, 0.0f));
+            if (scanActive) {
+                scanTimeLeft -= Time.deltaTime;
+                if (scanTimeLeft < 0) {
+                    scanner.SetActive(false);
+                    scanActive = false;
+                }
+            }
+            if (scanPressed && !scanActive) {
+                scanner.SetActive(true);
+                scanTimeLeft = scanDuration;
+                scanActive = true;
+            }
 
-                boostTimeLeft -= Time.deltaTime;
-                if (boostTimeLeft < 0) {
-                    boostActive = false;
+            if (vAxis != 0.0f) {
+                if (boostActive) {
+                    transform.Rotate(new Vector3(0.0f, -vAxis * movementSpeed * boostSpeedMultiplier * Time.deltaTime, 0.0f));
+
+                    boostTimeLeft -= Time.deltaTime;
+                    if (boostTimeLeft < 0) {
+                        boostActive = false;
+                    }
+                } else {
+                    transform.Rotate(new Vector3(0.0f, -vAxis * movementSpeed * Time.deltaTime, 0.0f));
+                }
+
+            }
+
+            if (hAxis != 0.0f) {
+                transform.Rotate(new Vector3(0.0f, 0.0f, -hAxis * rotationSpeed * Time.deltaTime));
+            }
+
+            RaycastHit hit;
+            if (Physics.Raycast(player.position, -player.up, out hit, baseElevation + elevationMargin, colissionLayerMask)) {
+                if (hit.distance < baseElevation) {
+                    player.localPosition = new Vector3(0.0f, 0.0f, player.localPosition.z - 0.1f * verticalSpeed * Time.deltaTime);
                 }
             } else {
-                transform.Rotate(new Vector3(0.0f, -vAxis * movementSpeed * Time.deltaTime, 0.0f));
+                player.localPosition = new Vector3(0.0f, 0.0f, player.localPosition.z + 0.1f * verticalSpeed * Time.deltaTime);
             }
-                
-        }
 
-        if (hAxis != 0.0f) {
-            transform.Rotate(new Vector3(0.0f, 0.0f, -hAxis * rotationSpeed * Time.deltaTime));
-        }
+            ConsumeEnergy(0.1f * energyConsumeMultiplier * Time.deltaTime);
 
-        RaycastHit hit;
-        if (Physics.Raycast(player.position, -player.up, out hit, baseElevation + elevationMargin, colissionLayerMask)) {
-            if (hit.distance < baseElevation) {
-                player.localPosition = new Vector3(0.0f, 0.0f, player.localPosition.z - 0.1f * verticalSpeed * Time.deltaTime);
+            if (energy > 20 && Input.GetKeyDown(KeyCode.Space)) {
+                ConsumeEnergy(20);
+
+                boostActive = true;
+                boostTimeLeft = boostDuration;
             }
-        } else {
-            player.localPosition = new Vector3(0.0f, 0.0f, player.localPosition.z + 0.1f * verticalSpeed * Time.deltaTime);
-        }
-
-        ConsumeEnergy(0.1f * energyConsumeMultiplier * Time.deltaTime);
-
-        if (energy > 20 && Input.GetKeyDown(KeyCode.Space)) {
-            ConsumeEnergy(20);
-
-            boostActive = true;
-            boostTimeLeft = boostDuration;
         }
     }
 
@@ -137,7 +141,18 @@ public class PlayerController : MonoBehaviour {
 
     public void OnScan(Collider other) {
         if (scanActive) {
-            Debug.Log("Escaneado");
+            scanner.SetActive(false);
+            scanActive = false;
+
+            int index = -1;
+            for (int i = 0; i < 3; i++) {
+                string id = other.gameObject.name.Substring(0, 6);
+                if (Settings.system.planets[Settings.actualPlanet].creatures[i].Equals(id)) {
+                    index = i;
+                    break;
+                }
+            }
+            dc.Discover(index);
         }
     }
 }

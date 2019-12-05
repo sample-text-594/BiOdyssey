@@ -2320,7 +2320,7 @@ RectTransform:
   - {fileID: 1700750802}
   - {fileID: 1615437860}
   m_Father: {fileID: 1472003244}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3328,6 +3328,8 @@ MonoBehaviour:
   scanner: {fileID: 495796453}
   scanDuration: 1
   sl: {fileID: 1191669848}
+  uiDiscover: {fileID: 1796916449}
+  dc: {fileID: 1796916451}
   energy: 0
 --- !u!4 &1191669847
 Transform:
@@ -4068,11 +4070,11 @@ RectTransform:
   m_Children:
   - {fileID: 1259206262}
   m_Father: {fileID: 1472003244}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 411.79996, y: 224.80002}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -100.20004, y: -22}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1407057135
@@ -4319,8 +4321,8 @@ RectTransform:
   - {fileID: 1053681027}
   - {fileID: 62789368}
   - {fileID: 1796916450}
-  - {fileID: 715843692}
   - {fileID: 1407057134}
+  - {fileID: 715843692}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4645,9 +4647,9 @@ RectTransform:
   m_Father: {fileID: 1472003244}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -356, y: 215}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 156, y: -19}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1668514340
@@ -5167,7 +5169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1796916450
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5198,20 +5200,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1796916449}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96a8b415c9db9604293c8ac8470b4ed3, type: 3}
+  m_Script: {fileID: 11500000, guid: b6f5d0044a453714fa404a2eb84da6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  star: {fileID: 0}
-  uiSystem: {fileID: 0}
-  gtp: {fileID: 0}
-  uiNewSystem: {fileID: 1201274853}
-  systemName: {fileID: 144901035}
+  uiNewCreature: {fileID: 1201274853}
+  creatureName: {fileID: 144901035}
   renameButton: {fileID: 287117471}
   skipButton: {fileID: 261749838}
   okButton: {fileID: 247993874}
   renameText: {fileID: 1222276052}
-  uiRenameSystem: {fileID: 557566443}
-  starNameInput: {fileID: 397357106}
+  uiRenameCreature: {fileID: 557566443}
+  creatureNameInput: {fileID: 397357106}
 --- !u!114 &1796916452
 MonoBehaviour:
   m_ObjectHideFlags: 0
