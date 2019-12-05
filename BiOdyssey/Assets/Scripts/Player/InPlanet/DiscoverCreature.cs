@@ -4,10 +4,6 @@ using UnityEngine;
 using TMPro;
 
 public class DiscoverCreature : MonoBehaviour {
-    public Star star;
-    public GameObject uiSystem;
-    public GoToPlanet gtp;
-
     public GameObject uiNewCreature;
     public TextMeshProUGUI creatureName;
     public GameObject renameButton;
@@ -41,17 +37,14 @@ public class DiscoverCreature : MonoBehaviour {
     }
 
     public void Skip() {
-        gtp.uiSystemEnabled = true;
-
         gameObject.SetActive(false);
-        uiSystem.SetActive(true);
     }
 
     public void Confirm() {
         string newName = creatureNameInput.text;
 
         if (!newName.Equals("")) {
-            star.RenameStar(newName);
+            //star.RenameStar(newName);
             creatureName.SetText(newName);
         }
 
