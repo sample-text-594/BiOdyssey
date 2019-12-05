@@ -1105,6 +1105,7 @@ GameObject:
   - component: {fileID: 980500619}
   - component: {fileID: 980500618}
   - component: {fileID: 980500617}
+  - component: {fileID: 980500620}
   m_Layer: 5
   m_Name: Register
   m_TagString: Untagged
@@ -1175,8 +1176,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1772040604}
-        m_MethodName: LoadScene
+      - m_Target: {fileID: 980500620}
+        m_MethodName: RegisterButton
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1225,6 +1226,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980500615}
   m_CullTransparentMesh: 0
+--- !u!114 &980500620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980500615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8611a4d773cf39147b02f752f1f1fec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usernameInput: {fileID: 2130567560}
+  passwordInput: {fileID: 1421300712}
+  repeatPasswordInput: {fileID: 1389770159}
 --- !u!1 &1075912756
 GameObject:
   m_ObjectHideFlags: 0

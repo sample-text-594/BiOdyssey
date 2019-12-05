@@ -10,6 +10,7 @@ public class DiscoverSystem : MonoBehaviour {
 
     public GameObject uiNewSystem;
     public TextMeshProUGUI systemName;
+    public TextMeshProUGUI systemUserName;
     public GameObject renameButton;
     public GameObject skipButton;
     public GameObject okButton;
@@ -30,9 +31,11 @@ public class DiscoverSystem : MonoBehaviour {
             renameText.SetActive(false);
         } else {
             okButton.SetActive(false);
+            Settings.system.userName = Settings.user.username;
         }
 
         systemName.SetText(star.gameObject.name);
+        systemUserName.SetText(Settings.system.userName);
     }
 
     public void Rename() {
@@ -53,6 +56,7 @@ public class DiscoverSystem : MonoBehaviour {
         if (!newName.Equals("")) {
             star.RenameStar(newName);
             systemName.SetText(newName);
+            Settings.system.name = newName;
         }
 
         uiRenameSystem.SetActive(false);

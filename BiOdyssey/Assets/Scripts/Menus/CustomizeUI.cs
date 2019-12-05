@@ -43,21 +43,35 @@ public class CustomizeUI : MonoBehaviour {
     }
 
     public void onTerrainChange(int pos) {
-        planet.shapeSettings = terrains[pos].Clone();
-        planet.shapeSettings.planetRadius = 50f;
+        if (planet != null) {
+            planet.shapeSettings = terrains[pos].Clone();
+            planet.shapeSettings.planetRadius = 50f;
+
+            Settings.user.baseShapeIndex = pos;
+        }
     }
 
     public void onColorChange(int pos) {
-        planet.colourSettings = colors[pos].Clone();
+        if (planet != null) {
+            planet.colourSettings = colors[pos].Clone();
+
+            Settings.user.baseColorIndex = pos;
+        }
     }
 
     public void onFloraChange(int pos) {
-        planet.floraSettings = floras[pos].Clone();
-        planet.floraSettings.generateFlora = true;
+        if (planet != null) {
+            planet.floraSettings = floras[pos].Clone();
+            planet.floraSettings.generateFlora = true;
+
+            Settings.user.baseFloraIndex = pos;
+        }
     }
 
     public void generatePlanet() {
-        planet.GeneratePlanet();
+        DatabaseHandler.PostUser(Settings.user, () => {
+            planet.GeneratePlanet();
+        });
     }
 
     public void Return(int sceneId) {

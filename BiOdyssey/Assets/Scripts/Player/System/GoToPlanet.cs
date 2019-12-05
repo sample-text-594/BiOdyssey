@@ -144,11 +144,37 @@ public class GoToPlanet : MonoBehaviour {
     public void NextSystem() {
         if (Settings.fuel > fuelPerJump) {
             Settings.fuel -= fuelPerJump;
-            Settings.system.seed++;
-
             Settings.returningFromPlanet = false;
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //Subimos el sistema con los cambios realizados
+            DatabaseHandler.PostSystem(Settings.system, () => {
+                //Obtenemos el siguiente sistema
+                Settings.system.seed++;
+
+                //Comprobar si el sistema existe en la base de datos
+                DatabaseHandler.GetSystem(Settings.system.seed.ToString(), system => {
+                    //Si existe lo recreamos
+                    Settings.system = system;
+
+                    //Cargamos el sistema
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                }, () => {
+                    //Si no existe inicializamos los campos por defecto
+                    Settings.system.name = "";
+                    Settings.system.userName = "";
+
+                    for (int i = 0; i < 5; i++) {
+                        for (int j = 0; j < 3; j++) {
+                            Settings.system.planets[i].creatures[j] = "";
+                            Settings.system.planets[i].creatureNames[j] = "";
+                            Settings.system.planets[i].userNames[j] = "";
+                        }
+                    }
+
+                    //Cargamos el sistema
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                });
+            });
         }
     }
 }

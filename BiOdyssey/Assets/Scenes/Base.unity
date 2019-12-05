@@ -732,8 +732,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 154710266}
-        m_MethodName: LoadScene
+      - m_Target: {fileID: 1143575389}
+        m_MethodName: Fly
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1636,12 +1636,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1789965452}
-  m_RootOrder: 1
+  m_Father: {fileID: 825260936}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -10}
+  m_AnchoredPosition: {x: 10, y: -8}
   m_SizeDelta: {x: 80, y: 30}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &358113082
@@ -3277,6 +3277,7 @@ RectTransform:
   - {fileID: 1915333050}
   - {fileID: 19067077}
   - {fileID: 1084089284}
+  - {fileID: 358113081}
   m_Father: {fileID: 1789965452}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4525,7 +4526,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -100.20004, y: -23}
-  m_SizeDelta: {x: 200, y: 100}
+  m_SizeDelta: {x: 200, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1105151024
 MonoBehaviour:
@@ -4625,6 +4626,7 @@ MonoBehaviour:
   timeText: {fileID: 1247676839}
   reduceTimeButton: {fileID: 896436579}
   flyButton: {fileID: 154710261}
+  sl: {fileID: 154710266}
 --- !u!1 &1157850046
 GameObject:
   m_ObjectHideFlags: 0
@@ -5404,26 +5406,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1234631039}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e01ec0a41dcd9e840a86d476cfc245f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 0347b6960ead27642b942be251d036df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resolution: 120
-  autoUpdate: 1
-  generateNavMesh: 1
-  faceRenderMask: 0
-  shapeSettings: {fileID: 11400000, guid: 4a0d45faaf97c8c47b3fe1d88e24b2ab, type: 2}
-  colourSettings: {fileID: 11400000, guid: 3ceb70aa994bd724dba5aacc2e7fdcb7, type: 2}
-  floraSettings: {fileID: 11400000, guid: 27c6ff55244d4ae4ba973b2105b48705, type: 2}
-  shapeSettingsFoldout: 0
-  colourSettingsFoldout: 1
-  floraSettingsFoldout: 0
-  meshFilters:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  cui: {fileID: 1766368437}
+  terrainDD: {fileID: 19067078}
+  colorDD: {fileID: 1640448528}
+  floraDD: {fileID: 70376351}
 --- !u!4 &1234631041
 Transform:
   m_ObjectHideFlags: 0
@@ -7942,7 +7931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraController: {fileID: 750739356}
   cameraOffset: 50
-  planet: {fileID: 1234631040}
+  planet: {fileID: 0}
   menuButton: {fileID: 1224616635}
   customizeButton: {fileID: 1184695284}
   customizeUI: {fileID: 1789965451}
@@ -7992,7 +7981,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 825260936}
-  - {fileID: 358113081}
   m_Father: {fileID: 1766368436}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

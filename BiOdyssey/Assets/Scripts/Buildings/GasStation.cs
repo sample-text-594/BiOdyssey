@@ -8,6 +8,7 @@ public class GasStation : MonoBehaviour {
     public TextMeshProUGUI timeText;
     public GameObject reduceTimeButton;
     public GameObject flyButton;
+    public SceneLoader sl;
 
     int hours;
     int minutes;
@@ -26,7 +27,7 @@ public class GasStation : MonoBehaviour {
 
         //Comprobar cuanto tiempo ha pasado desde la ultima vez
         //Settings.timeLeftFill = tiempoRestante
-        Settings.timeLeftFill = 40;
+        Settings.timeLeftFill = 10;
 
         hours = Settings.timeLeftFill / 3600;
         minutes = (Settings.timeLeftFill % 3600) / 60;
@@ -87,7 +88,29 @@ public class GasStation : MonoBehaviour {
         timeText.SetText(time);
     }
 
-    public void Fly(int sceneId) {
-        SceneManager.LoadScene(sceneId);
+    public void Fly() {
+        //Comprobar si el sistema existe en la base de datos
+        DatabaseHandler.GetSystem(Settings.system.seed.ToString(), system => {
+            //Si existe lo recreamos
+            Settings.system = system;
+
+            //Cargamos el sistema
+            sl.LoadScene();
+        }, () => {
+            //Si no existe inicializamos los campos por defecto
+            Settings.system.name = "";
+            Settings.system.userName = "";
+
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 3; j++) {
+                    Settings.system.planets[i].creatures[j] = "";
+                    Settings.system.planets[i].creatureNames[j] = "";
+                    Settings.system.planets[i].userNames[j] = "";
+                }
+            }
+
+            //Cargamos el sistema
+            sl.LoadScene();
+        });
     }
 }

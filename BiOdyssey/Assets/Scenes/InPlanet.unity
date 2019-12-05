@@ -5205,6 +5205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiNewCreature: {fileID: 1201274853}
   creatureName: {fileID: 144901035}
+  creatureUserName: {fileID: 1185990521}
   renameButton: {fileID: 287117471}
   skipButton: {fileID: 261749838}
   okButton: {fileID: 247993874}

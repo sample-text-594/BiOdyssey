@@ -33,8 +33,7 @@ public class PlanetBuilder : MonoBehaviour {
                 creature = BuildCreatureRandom();
                 Settings.system.planets[Settings.actualPlanet].creatures[i / 2] = creature.name;
             } else {
-                creature = BuildCreatureRandom();
-                Settings.system.planets[Settings.actualPlanet].creatures[i / 2] = creature.name;
+                creature = BuildCreature(i / 2);
             }
 
             for (int j = 0; j < 2; j++) {
@@ -83,6 +82,50 @@ public class PlanetBuilder : MonoBehaviour {
         creature.name += rand;
 
         rand = Random.Range(0, 5);
+        Instantiate(creatures[type].part5[rand]).transform.SetParent(creature.transform);
+        creature.name += rand;
+
+        if (type == 0) {
+            col = creature1Colors.Evaluate(Random.Range(0f, 1f));
+
+            foreach (MeshRenderer m in creature.GetComponentsInChildren<MeshRenderer>()) {
+                m.material.SetColor("_BaseColor", col);
+            }
+        } else {
+            col = creature2Colors.Evaluate(Random.Range(0f, 1f));
+
+            foreach (SkinnedMeshRenderer m in creature.GetComponentsInChildren<SkinnedMeshRenderer>()) {
+                m.material.SetColor("_BaseColor", col);
+            }
+        }
+
+        return creature;
+    }
+
+    GameObject BuildCreature(int index) {
+        GameObject creature;
+        Color col;
+
+        int type = int.Parse(Settings.system.planets[Settings.actualPlanet].creatures[index].Substring(0, 1));
+        creature = Instantiate(creatures[type].creaturePrefab);
+
+        int rand = int.Parse(Settings.system.planets[Settings.actualPlanet].creatures[index].Substring(1, 1));
+        Instantiate(creatures[type].part1[rand]).transform.SetParent(creature.transform);
+        creature.name = "" + type + rand;
+
+        rand = int.Parse(Settings.system.planets[Settings.actualPlanet].creatures[index].Substring(2, 1));
+        Instantiate(creatures[type].part2[rand]).transform.SetParent(creature.transform);
+        creature.name += rand;
+
+        rand = int.Parse(Settings.system.planets[Settings.actualPlanet].creatures[index].Substring(3, 1));
+        Instantiate(creatures[type].part3[rand]).transform.SetParent(creature.transform);
+        creature.name += rand;
+
+        rand = int.Parse(Settings.system.planets[Settings.actualPlanet].creatures[index].Substring(4, 1));
+        Instantiate(creatures[type].part4[rand]).transform.SetParent(creature.transform);
+        creature.name += rand;
+
+        rand = int.Parse(Settings.system.planets[Settings.actualPlanet].creatures[index].Substring(5, 1));
         Instantiate(creatures[type].part5[rand]).transform.SetParent(creature.transform);
         creature.name += rand;
 

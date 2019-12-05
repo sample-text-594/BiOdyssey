@@ -22,40 +22,16 @@ public class Star : MonoBehaviour
 
     Color sunLightColor;
 
-    void Start()
-    {
-        if (Settings.system.Equals(default(SystemStruct))) {
-            Settings.system.seed = 1;
-
-            Settings.system.planets = new PlanetStruct[5];
-            for (int i = 0; i < 5; i++) {
-                Settings.system.planets[i].creatures = new string[3];
-                Settings.system.planets[i].creatureNames = new string[3];
-            }
-        }
-
-        if (!Settings.returningFromPlanet) {
-            //Comprobar si el sistema existe en la base de datos
-            //TODO
-
-            //Si existe lo recreamos
-            //TODO
-
-            //Si no existe inicializamos los campos por defecto
-            Settings.system.name = "";
-
-            for (int i = 0; i < 5; i++) {
-                for (int j = 0; j < 3; j++) {
-                    Settings.system.planets[i].creatures[j] = "";
-                    Settings.system.planets[i].creatureNames[j] = "";
-                }
-            }
-        }
-
+    void Start() {
         Random.InitState(Settings.system.seed);
 
-        nameGenerator = new NameGenerator();
-        gameObject.name = nameGenerator.generateName(Settings.system.seed);
+        if (Settings.system.name.Equals("")) {
+            nameGenerator = new NameGenerator();
+            gameObject.name = nameGenerator.generateName(Settings.system.seed);
+        } else {
+            gameObject.name = Settings.system.name;
+        }
+        
         float scale = Random.Range(10, 101) / 10.0f;
 
         Camera.main.transform.position = new Vector3 (0, 26 + 20 * scale, -26 -20 * scale);

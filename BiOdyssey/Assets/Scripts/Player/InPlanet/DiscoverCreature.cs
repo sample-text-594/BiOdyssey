@@ -6,6 +6,7 @@ using TMPro;
 public class DiscoverCreature : MonoBehaviour {
     public GameObject uiNewCreature;
     public TextMeshProUGUI creatureName;
+    public TextMeshProUGUI creatureUserName;
     public GameObject renameButton;
     public GameObject skipButton;
     public GameObject okButton;
@@ -27,13 +28,16 @@ public class DiscoverCreature : MonoBehaviour {
             renameButton.SetActive(false);
             skipButton.SetActive(false);
             renameText.SetActive(false);
-
-            creatureName.SetText(Settings.system.planets[Settings.actualPlanet].creatureNames[creatureIndex]);
         } else {
             okButton.SetActive(false);
 
-            creatureName.SetText("Creature " + Settings.system.planets[Settings.actualPlanet].creatures[creatureIndex]);
+            Settings.system.planets[Settings.actualPlanet].creatureNames[creatureIndex] = "Creature " + Settings.system.planets[Settings.actualPlanet].creatures[creatureIndex];
+            Settings.system.planets[Settings.actualPlanet].userNames[creatureIndex] = Settings.user.username;
         }
+
+        creatureName.SetText(Settings.system.planets[Settings.actualPlanet].creatureNames[creatureIndex]);
+        creatureUserName.SetText(Settings.system.planets[Settings.actualPlanet].userNames[creatureIndex]);
+
         gameObject.SetActive(true);
     }
 
