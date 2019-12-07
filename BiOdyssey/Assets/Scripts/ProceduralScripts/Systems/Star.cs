@@ -11,6 +11,8 @@ public class Star : MonoBehaviour
     public DiscoverSystem ds;
     public GoToPlanet gtp;
 
+    public Material starMaterial;
+
     NameGenerator nameGenerator;
 
     int numPlanets;
@@ -39,6 +41,8 @@ public class Star : MonoBehaviour
 
         transform.localScale = new Vector3(scale, scale, scale);
         sunLightColor = grad.Evaluate(scale/10);
+
+        starMaterial.SetColor("_EmissionColor", sunLightColor);
 
         numPlanets = Random.Range(3, 6);
         planetoidTransformArray = new Transform[numPlanets];
