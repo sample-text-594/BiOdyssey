@@ -1115,6 +1115,7 @@ GameObject:
   - component: {fileID: 1004625166}
   - component: {fileID: 1004625168}
   - component: {fileID: 1004625167}
+  - component: {fileID: 1004625169}
   m_Layer: 5
   m_Name: QualityText
   m_TagString: Untagged
@@ -1263,6 +1264,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1004625165}
   m_CullTransparentMesh: 0
+--- !u!114 &1004625169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004625165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e1f7c1024d3da740afaed3881819bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traduccion: Calidad
 --- !u!1 &1023103612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1345,10 +1359,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 723797788}
   m_HandleRect: {fileID: 1849954618}
   m_Direction: 0
-  m_MinValue: 1
+  m_MinValue: 0
   m_MaxValue: 10
   m_WholeNumbers: 1
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1694,10 +1708,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1609639258}
   m_HandleRect: {fileID: 366836427}
   m_Direction: 0
-  m_MinValue: 1
-  m_MaxValue: 10
+  m_MinValue: 60
+  m_MaxValue: 120
   m_WholeNumbers: 1
-  m_Value: 1
+  m_Value: 60
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1714,6 +1728,7 @@ GameObject:
   - component: {fileID: 1473969393}
   - component: {fileID: 1473969395}
   - component: {fileID: 1473969394}
+  - component: {fileID: 1473969396}
   m_Layer: 5
   m_Name: LanguageText
   m_TagString: Untagged
@@ -1860,6 +1875,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473969392}
   m_CullTransparentMesh: 0
+--- !u!114 &1473969396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473969392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e1f7c1024d3da740afaed3881819bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traduccion: Idioma
 --- !u!1 &1609639257
 GameObject:
   m_ObjectHideFlags: 0
@@ -1945,6 +1973,7 @@ GameObject:
   - component: {fileID: 1810079881}
   - component: {fileID: 1810079883}
   - component: {fileID: 1810079882}
+  - component: {fileID: 1810079884}
   m_Layer: 5
   m_Name: 'VolumeText '
   m_TagString: Untagged
@@ -2091,6 +2120,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810079880}
   m_CullTransparentMesh: 0
+--- !u!114 &1810079884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810079880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e1f7c1024d3da740afaed3881819bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traduccion: Volumen
 --- !u!1 &1849954617
 GameObject:
   m_ObjectHideFlags: 0

@@ -39,7 +39,9 @@ public class PlanetBuilder : MonoBehaviour {
             case "Death":
                 Debug.Log("Death");
                 GameObject enemy = Instantiate(enemyCreature);
-                enemy.GetComponent<MonsterController>().target = playerController;
+                MonsterController mc = enemy.GetComponent<MonsterController>();
+                mc.target = playerController;
+                mc.sl = GetComponent<SceneLoader>();
                 break;
             default:
                 GameObject g = new GameObject("creatures");
