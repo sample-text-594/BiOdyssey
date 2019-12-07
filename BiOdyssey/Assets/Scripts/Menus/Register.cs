@@ -11,11 +11,15 @@ public class Register : MonoBehaviour {
 
     public void RegisterButton(int mainMenuIndex) {
         if (!usernameInput.text.Equals("") && !passwordInput.text.Equals("") && !repeatPasswordInput.text.Equals("") && passwordInput.text.Equals(repeatPasswordInput.text)) {
-            Settings.user.username = usernameInput.text;
-            Settings.user.password = passwordInput.text;
-
-            DatabaseHandler.PostUser(Settings.user, () => {
-                SceneManager.LoadScene(mainMenuIndex);
+            DatabaseHandler.GetUser(usernameInput.text, user => {
+                //Username already exists
+            }, () => {
+                //Username free
+                DatabaseHandler.PostUser(Settings.user, () => {
+                    Settings.user.username = usernameInput.text;
+                    Settings.user.password = passwordInput.text;
+                    SceneManager.LoadScene(mainMenuIndex);
+                });
             });
         }
     }

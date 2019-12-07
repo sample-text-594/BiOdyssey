@@ -126,6 +126,7 @@ public class GoToPlanet : MonoBehaviour {
     public void Fly() {
         Planet p = gameObject.GetComponentInParent<Planet>();
 
+        Settings.planetSettings.tag = p.tag;
         Settings.planetSettings.shapeSettings = p.shapeSettings;
         Settings.planetSettings.colourSettings = p.colourSettings;
         Settings.planetSettings.floraSettings = p.floraSettings;

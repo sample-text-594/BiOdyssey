@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e393c6b94827cd44d855d432901f06aa, type: 3}
   m_Name: Ocean
   m_EditorClassIdentifier: 
+  tag: Ocean
   shapeSettings: {fileID: 11400000, guid: cb7a3429f9c7d9e4a85974ada014949b, type: 2}
   colourSettings: {fileID: 11400000, guid: 63a8108e2e7da3e499772cd2aae8d692, type: 2}
   floraSettings: {fileID: 11400000, guid: 370bcc627ffbcc544aa02111fe0c080f, type: 2}

@@ -5,10 +5,14 @@ using UnityEngine.AI;
 
 public class PlanetBuilder : MonoBehaviour {
     public Transform[] spawners;
-    public Creature[] creatures;
 
+    public Creature[] creatures;
     public Gradient creature1Colors;
     public Gradient creature2Colors;
+
+    public GameObject enemyCreature;
+
+    public PlayerController playerController;
 
     void Start() {
         Planet p = gameObject.AddComponent<Planet>();
@@ -23,38 +27,55 @@ public class PlanetBuilder : MonoBehaviour {
 
         p.GeneratePlanet();
 
-        GameObject g = new GameObject("creatures");
-        g.transform.SetParent(p.transform);
+        switch (Settings.planetSettings.tag) {
+            case "Fire":
+                Debug.Log("Fire");
+                playerController.energyConsumeMultiplier *= 2;
+                break;
+            case "Poison":
+                Debug.Log("Poison");
+                playerController.poisonDamageEnabled = true;
+                break;
+            case "Death":
+                Debug.Log("Death");
+                GameObject enemy = Instantiate(enemyCreature);
+                enemy.GetComponent<MonsterController>().target = playerController;
+                break;
+            default:
+                GameObject g = new GameObject("creatures");
+                g.transform.SetParent(p.transform);
 
-        for (int i = 0; i < spawners.Length; i += 2) {
-            GameObject creature;
+                for (int i = 0; i < spawners.Length; i += 2) {
+                    GameObject creature;
 
-            if (Settings.system.planets[Settings.actualPlanet].creatures[i / 2].Equals("")) {
-                creature = BuildCreatureRandom();
-                Settings.system.planets[Settings.actualPlanet].creatures[i / 2] = creature.name;
-            } else {
-                creature = BuildCreature(i / 2);
-            }
+                    if (Settings.system.planets[Settings.actualPlanet].creatures[i / 2].Equals("")) {
+                        creature = BuildCreatureRandom();
+                        Settings.system.planets[Settings.actualPlanet].creatures[i / 2] = creature.name;
+                    } else {
+                        creature = BuildCreature(i / 2);
+                    }
 
-            for (int j = 0; j < 2; j++) {
-                creature.transform.SetParent(g.transform);
-                creature.transform.position = spawners[i + j].position;
-                if (i + j == 5) {
-                    creature.transform.localEulerAngles = new Vector3(creature.transform.localEulerAngles.x + 180, creature.transform.localEulerAngles.y, creature.transform.localEulerAngles.z);
+                    for (int j = 0; j < 2; j++) {
+                        creature.transform.SetParent(g.transform);
+                        creature.transform.position = spawners[i + j].position;
+                        if (i + j == 5) {
+                            creature.transform.localEulerAngles = new Vector3(creature.transform.localEulerAngles.x + 180, creature.transform.localEulerAngles.y, creature.transform.localEulerAngles.z);
+                        }
+
+                        NavMeshAgent nma = creature.GetComponent<NavMeshAgent>();
+                        nma.Warp(creature.transform.position);
+                        nma.updateUpAxis = true;
+
+                        for (int k = 0; k < Random.Range(2, 4); k++) {
+                            nma = Instantiate(creature).GetComponent<NavMeshAgent>();
+                            nma.Warp(nma.transform.position);
+                            nma.updateUpAxis = true;
+
+                            nma.transform.SetParent(g.transform);
+                        }
+                    }
                 }
-
-                NavMeshAgent nma = creature.GetComponent<NavMeshAgent>();
-                nma.Warp(creature.transform.position);
-                nma.updateUpAxis = true;
-
-                for (int k = 0; k < Random.Range(2, 4); k++) {
-                    nma = Instantiate(creature).GetComponent<NavMeshAgent>();
-                    nma.Warp(nma.transform.position);
-                    nma.updateUpAxis = true;
-
-                    nma.transform.SetParent(g.transform);
-                }
-            }
+                break;
         }
     }
 

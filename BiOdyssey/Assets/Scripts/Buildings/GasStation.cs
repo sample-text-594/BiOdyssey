@@ -27,7 +27,7 @@ public class GasStation : MonoBehaviour {
 
         //Comprobar cuanto tiempo ha pasado desde la ultima vez
         //Settings.timeLeftFill = tiempoRestante
-        Settings.timeLeftFill = 10;
+        Settings.timeLeftFill = 1;
 
         hours = Settings.timeLeftFill / 3600;
         minutes = (Settings.timeLeftFill % 3600) / 60;

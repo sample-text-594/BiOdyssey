@@ -117,6 +117,7 @@ public class Star : MonoBehaviour
 
             p.resolution = 40;
             p.generateNavMesh = false;
+            p.tag = planetSettings[randPlanet].tag;
             p.shapeSettings = planetSettings[randPlanet].shapeSettings.Clone();
             p.colourSettings = planetSettings[randPlanet].colourSettings.Clone();
             p.floraSettings = planetSettings[randPlanet].floraSettings.Clone();

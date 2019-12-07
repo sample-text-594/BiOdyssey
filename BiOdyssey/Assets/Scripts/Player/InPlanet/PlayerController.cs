@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour {
 
     int colissionLayerMask;
 
-    public float energy;
+    float energy;
     int actualEnergyBar;
 
     bool boostActive;
@@ -36,8 +36,12 @@ public class PlayerController : MonoBehaviour {
     bool scanActive;
     float scanTimeLeft;
 
-    Transform player;
+    [HideInInspector]
+    public Transform player;
     float planetRadius;
+
+    [HideInInspector]
+    public bool poisonDamageEnabled = false;
 
     void Start() {
         player = transform.GetChild(0);
@@ -49,6 +53,9 @@ public class PlayerController : MonoBehaviour {
 
         energy = 100;
         actualEnergyBar = energyBars.Length - 1;
+        for (int i = 0; i < Settings.energyCellsBroken; i++) {
+            ConsumeEnergy(20);
+        }
 
         boostActive = false;
         boostTimeLeft = 0.0f;
@@ -64,6 +71,10 @@ public class PlayerController : MonoBehaviour {
             bool scanPressed = Input.GetKeyDown(KeyCode.E);
 
             if (energy < 0) {
+                if (poisonDamageEnabled && Settings.energyCellsBroken < 4) {
+                    Settings.energyCellsBroken++;
+                    poisonDamageEnabled = false;
+                }
                 ReturnToSystem();
             }
 
@@ -91,7 +102,6 @@ public class PlayerController : MonoBehaviour {
                 } else {
                     transform.Rotate(new Vector3(0.0f, -vAxis * movementSpeed * Time.deltaTime, 0.0f));
                 }
-
             }
 
             if (hAxis != 0.0f) {
@@ -126,6 +136,11 @@ public class PlayerController : MonoBehaviour {
         } else {
             quantityConverted -= energyBars[actualEnergyBar].value;
             energyBars[actualEnergyBar].value = 0;
+
+            if (actualEnergyBar + Settings.energyCellsBroken > 4) {
+                energyBars[actualEnergyBar].gameObject.SetActive(false);
+            }
+
             if (actualEnergyBar > 0) {
                 actualEnergyBar--;
                 energyBars[actualEnergyBar].value -= quantityConverted;
@@ -144,15 +159,37 @@ public class PlayerController : MonoBehaviour {
             scanner.SetActive(false);
             scanActive = false;
 
-            int index = -1;
-            for (int i = 0; i < 3; i++) {
-                string id = other.gameObject.name.Substring(0, 6);
-                if (Settings.system.planets[Settings.actualPlanet].creatures[i].Equals(id)) {
-                    index = i;
-                    break;
+            if (!other.CompareTag("Combustible")) {
+                int index = -1;
+                for (int i = 0; i < 3; i++) {
+                    string id = other.gameObject.name.Substring(0, 6);
+                    if (Settings.system.planets[Settings.actualPlanet].creatures[i].Equals(id)) {
+                        index = i;
+                        break;
+                    }
                 }
+                dc.Discover(index, this);
+            } else {
+                Settings.fuel += 0.01f;
+                
+                if (Settings.fuel > 1f) {
+                    Settings.fuel = 1f;
+                }
+
+                Destroy(other.gameObject);
             }
-            dc.Discover(index);
+            
+        }
+    }
+
+    public void RechargeEnergy() {
+        foreach (Slider s in energyBars) {
+            s.value = 1;
+        }
+        energy = 100;
+        actualEnergyBar = energyBars.Length - 1;
+        for (int i = 0; i < Settings.energyCellsBroken; i++) {
+            ConsumeEnergy(20);
         }
     }
 }

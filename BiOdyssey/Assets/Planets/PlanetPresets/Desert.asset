@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e393c6b94827cd44d855d432901f06aa, type: 3}
   m_Name: Desert
   m_EditorClassIdentifier: 
+  tag: Desert
   shapeSettings: {fileID: 11400000, guid: e366d5bf99dfc554bb9ac2f61b5defe1, type: 2}
   colourSettings: {fileID: 11400000, guid: 192ce0ecc16457449824ad885c14b3fd, type: 2}
   floraSettings: {fileID: 11400000, guid: 4d48fccf603b50742ad8c946bdd3eff5, type: 2}

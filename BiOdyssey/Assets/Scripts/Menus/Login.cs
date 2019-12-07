@@ -14,7 +14,11 @@ public class Login : MonoBehaviour {
                 if (user.password.Equals(passwordInput.text)) {
                     Settings.user = user;
                     SceneManager.LoadScene(mainMenuIndex);
+                } else {
+                    //Password mismatched
                 }
+            }, () => { 
+                //User not found
             });
         }
     }

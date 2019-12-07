@@ -31,6 +31,7 @@ public class DiscoverSystem : MonoBehaviour {
             renameText.SetActive(false);
         } else {
             okButton.SetActive(false);
+            Settings.system.name = star.gameObject.name;
             Settings.system.userName = Settings.user.username;
         }
 

@@ -6,15 +6,19 @@ public class DatabaseHandler {
     private static readonly string databaseURL = $"https://{projectId}.firebaseio.com/";
 
     public delegate void GetUserCallback(UserData user);
+    public delegate void GetUserCallbackNotFound();
     public delegate void PostUserCallback();
     public delegate void GetSystemCallback(SystemData system);
     public delegate void GetSystemCallbackNotFound();
     public delegate void PostSystemCallback();
 
-    public static void GetUser(string username, GetUserCallback callback) {
+    public static void GetUser(string username, GetUserCallback callback, GetUserCallbackNotFound callbackNotFound) {
         RestClient.Get<UserData>($"{databaseURL}users/{username}.json").Then(user => {
             Debug.Log("GetUser");
             callback(user);
+        }).Catch(rejected => {
+            Debug.Log("GetUserRejected");
+            callbackNotFound();
         });
     }
 

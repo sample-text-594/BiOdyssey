@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e393c6b94827cd44d855d432901f06aa, type: 3}
   m_Name: Poison
   m_EditorClassIdentifier: 
+  tag: Poison
   shapeSettings: {fileID: 11400000, guid: cb7a3429f9c7d9e4a85974ada014949b, type: 2}
   colourSettings: {fileID: 11400000, guid: 9269e73f1e3fd864db629f0bf426fd9e, type: 2}
-  floraSettings: {fileID: 11400000, guid: 27c6ff55244d4ae4ba973b2105b48705, type: 2}
+  floraSettings: {fileID: 11400000, guid: 49ed419d60aee3c40aa178d31fd76925, type: 2}

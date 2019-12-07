@@ -18,7 +18,7 @@ public class DiscoverCreature : MonoBehaviour {
     bool isDiscovered;
     int creatureIndex;
 
-    public void Discover(int index) {
+    public void Discover(int index, PlayerController pc) {
         creatureIndex = index;
 
         //Comprobar si la criatura ya esta descubierta
@@ -29,6 +29,7 @@ public class DiscoverCreature : MonoBehaviour {
             skipButton.SetActive(false);
             renameText.SetActive(false);
         } else {
+            pc.RechargeEnergy();
             okButton.SetActive(false);
 
             Settings.system.planets[Settings.actualPlanet].creatureNames[creatureIndex] = "Creature " + Settings.system.planets[Settings.actualPlanet].creatures[creatureIndex];
