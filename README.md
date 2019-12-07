@@ -130,7 +130,7 @@ Al comienzo del diseño de BiOdyssey nos encontramos con una serie de decisiones
 *	Los planetas combustible solo se encontraran en los sistemas de 4 y 5 planetas.
 
 
-### Estética y arte
+## 3. Estética y arte
 #### Criaturas
 *	Tanto la flora como la fauna han sido creadas con Blender.
 *	Hay varios tipos de criaturas:
@@ -162,7 +162,7 @@ Al comienzo del diseño de BiOdyssey nos encontramos con una serie de decisiones
 *	Para las pantallas de carga se ha optado por unos dibujos sencillos, minimalistas, que informen de manera clara al jugador de lo que está haciendo.
 
 
-### Trasfondo e historia
+## 4. Trasfondo e historia
 BiOdyssey es la historia de un explorador espacial que, tras ver la situación en la que se encuentra su planeta, decide viajar por el espacio para encontrar nuevos planetas y criaturas, aprender de ellos y ganar el conocimiento suficiente para recuperar la habitabilidad de su mundo.
 
 El planeta del protagonista ha sido víctima de una horrible crisis medioambiental que lo ha dejado muerto, sin ningún tipo de señal de vida. Viendo esta situación, la única opción que ve el protagonista es tratar de revivir su hogar, para lo cual viaja por multitud de sistemas aprendiendo de la biodiversidad alienígena. Así, pretende aplicar este conocimiento para tratar de recuperar la habitabilidad de su mundo de origen.
@@ -172,7 +172,7 @@ Su nave principal está propulsada por un vanguardista combustible: el MO-233, u
 Para aprender sobre estos ecosistemas, el protagonista debe escanear a las criaturas que lo habitan. Cuando encuentra y escanea a todas las criaturas de un planeta, adquiere lo que llama “conocimiento de bioma”, este conocimiento es una representación del progreso que hace en su búsqueda por revitalizar su planeta. Llegado el momento en que consigue el suficiente, comprende el funcionamiento del bioma en cuestión y adquiere la habilidad de replicarlo en su planeta origen.
 
 
-### Sonido y música
+## 5. Sonido y música
 La banda sonora y los efectos de sonido del videojuego han sido creados en ABLETON LIVE 10, un software multiplataforma que está estructurado en escenas y tracks.
 
 Cada tema ha sido compuesto a partir de unos acordes base que hacen recordar a armonías típicas de videojuegos.
@@ -184,7 +184,7 @@ Algunas de las referencias que hemos usado provienen de consolas retro como la S
 Todo este proceso da como resultado final varios temas que se reproducen mientras se juega dependiendo del bioma en que se encuentre el jugador, a parte de otros temas extra (para el planeta base o el menú); y efectos de sonido para las criaturas y para las acciones que realiza el jugador durante su aventura.
 
 
-### Comercialización
+## 6. Comercialización
 #### Audiencia objetivo
 Con este título queremos llegar, en especial, a la audiencia casual de gente entre 10 y 40 años. En SampleText594 consideramos que, dado que BiOdyssey es un juego enfocado a partidas cortas y rápidas, además, la sencillez del gameplay hace que la audiencia que mejor casa con las características del juego sea la casual.
 
