@@ -11,11 +11,11 @@
 
 
 ## 1. Introducción 
-### Sobre BiOdyssey:
+### Sobre BiOdyssey
 BiOdyssey es un videojuego de exploración en el que el jugador debe recorrer el espacio para descubrir sistemas planetarios, planetas y las especies de fauna alienígena que los habitan, y adquirir conocimiento sobre los distintos biomas en los que se engloban estos mundos.
-### Plataformas:
+### Plataformas
 BiOdyssey está pensado para jugarse en Google Chrome y Mozilla Firefox, tanto desde un ordenador como desde un smartphone, sin embargo, dado el espíritu y las características del videojuego, el móvil es la plataforma que consideramos ideal para disfrutar de BiOdyssey.
-### Decisiones de diseño:
+### Decisiones de diseño
 Al comienzo del diseño de BiOdyssey nos encontramos con una serie de decisiones que han marcado el posterior desarrollo del título:
 * En el juego, al estar pensado para jugarse en navegador y en móvil, las sesiones de juego deben de ser cortas y rápidas.
 * No debe haber ninguna mecánica de combate, el protagonista es un investigador, no un conquistador.
