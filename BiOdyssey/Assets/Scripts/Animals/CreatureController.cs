@@ -8,12 +8,17 @@ public class CreatureController : MonoBehaviour {
     IStatesCreature state;
 
     [HideInInspector]
+    public Animator[] anims;
+
+    [HideInInspector]
     public CreatureStateWander wanderState;
 
     [HideInInspector]
     public NavMeshAgent agent;
 
     void Start() {
+
+        anims = GetComponentsInChildren<Animator>();
         wanderState = new CreatureStateWander();
         state = wanderState;
 
