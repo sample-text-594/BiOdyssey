@@ -21,10 +21,12 @@ public class TerrainFace {
         this.localUp = localUp;
         this.resolution = resolution;
 
+        //Calculamos los otros ejes a partir del vector up recibido
         axisA = new Vector3(localUp.y, localUp.z, localUp.x);
         axisB = Vector3.Cross(localUp, axisA);
     }
 
+    //Creamos las mallas que representan cada cara
     public void CreateMesh() {
         Vector3[] vertices = new Vector3[resolution * resolution];
         int[] triangles = new int[(resolution - 1) * (resolution - 1) * 2 * 3];
@@ -33,16 +35,20 @@ public class TerrainFace {
 
         for (int vertIndex = 0, triIndex = 0, y = 0; y < resolution; y++) {
             for (int x = 0; x < resolution; x++) {
+                //Creamos un cubo con el numero de poligonos dependiente de la resolucion
                 Vector2 percent = new Vector2(x, y) / (resolution - 1);
                 uvTex[vertIndex] = percent;
 
                 //Una unidad en el eje y   Percent pasa de 0-1 a -1-1 y lo multiplicamos por la unidad del eje x y eje z
                 Vector3 pointOnUnitCube = localUp + (percent.x - .5f) * 2 * axisA + (percent.y - .5f) * 2 * axisB;
+                //Normalizamos cada punto para pasar de un cubo a una esfera
                 Vector3 pointOnUnitSphere = pointOnUnitCube.normalized;
+                //Calculamos su altura
                 float unscaledElevation = shapeGenerator.CalculateUnscaledElevation(pointOnUnitSphere);
                 vertices[vertIndex] = pointOnUnitSphere * shapeGenerator.GetScaledElevation(unscaledElevation);
                 uvHeight[vertIndex].y = unscaledElevation;
 
+                //Creamos la matriz de triangulos
                 if (x != (resolution - 1) && y != (resolution - 1)) {
                     triangles[triIndex] = vertIndex;
                     triangles[triIndex + 1] = vertIndex + resolution + 1;
@@ -59,6 +65,7 @@ public class TerrainFace {
             }
         }
 
+        //Actualizamos la malla
         mesh.Clear();
         mesh.vertices = vertices;
         mesh.triangles = triangles;

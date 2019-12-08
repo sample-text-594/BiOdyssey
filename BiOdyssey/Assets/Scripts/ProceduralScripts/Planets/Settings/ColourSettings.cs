@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Objeto que almacena todas las opciones de coloreado de planetas
 [CreateAssetMenu]
 public class ColourSettings : ScriptableObject {
     public Gradient gradient;
@@ -14,6 +15,7 @@ public class ColourSettings : ScriptableObject {
     public Texture2D terrainTexture;
     public int terrainTextureScale;
 
+    //Devuelve un nuevo objeto copia del invocante
     public ColourSettings Clone() {
         ColourSettings newCS = CreateInstance<ColourSettings>();
 

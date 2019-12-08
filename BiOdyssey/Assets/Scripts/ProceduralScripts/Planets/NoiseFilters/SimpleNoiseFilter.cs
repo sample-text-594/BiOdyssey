@@ -10,6 +10,7 @@ public class SimpleNoiseFilter : INoiseFilter {
         this.settings = settings;
     }
 
+    //Evalua un punto en el ruido. La funcion cambia dependiendo del tipo de ruido
     public float Evaluate(Vector3 point) {
         float noiseValue = 0;
         float frequency = settings.baseRoughness;

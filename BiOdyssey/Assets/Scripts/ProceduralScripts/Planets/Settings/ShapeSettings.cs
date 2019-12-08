@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Objeto que almacena los datos necesarios para generar el terreno del planeta
 [CreateAssetMenu]
 public class ShapeSettings : ScriptableObject {
     public float planetRadius = 1;
     public NoiseLayer[] noiseLayers;
 
+    //Devuelve un nuevo objeto copia del invocante
     public ShapeSettings Clone() {
         ShapeSettings newSS = CreateInstance<ShapeSettings>();
 

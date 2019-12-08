@@ -14,10 +14,12 @@ public class ColourGenerator {
         }
     }
 
+    //Funcion que guarda el valor minimo y el maximo del terreno
     public void UpdateElevation(MinMax elevationMinMax) {
         settings.planetMaterial.SetVector("_elevationMinMax", new Vector4(elevationMinMax.Min, elevationMinMax.Max));
     }
 
+    //Funcion que junta la paleta de colores del oceano y terreno en una textura para uso del shader.  Tambien sube otras texturas del terreno al shader.
     public void UpdateColours() {
         Color[] colours = new Color[textureResolution * 2];
         for (int i = 0; i < textureResolution * 2; i++) {

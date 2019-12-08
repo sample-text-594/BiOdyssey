@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Objeto que almacena un tipo de filtro de ruido
 [System.Serializable]
 public class NoiseSettings {
 

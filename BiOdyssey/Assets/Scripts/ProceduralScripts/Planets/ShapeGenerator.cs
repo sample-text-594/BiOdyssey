@@ -22,6 +22,7 @@ public class ShapeGenerator {
         float firstLayerValue = 0;
         float elevation = 0;
 
+        //Evaluamos el punto en la primera capa de ruido
         if (noiseFilters.Length > 0) {
             firstLayerValue = noiseFilters[0].Evaluate(pointOnUnitSphere);
             if (settings.noiseLayers[0].enabled) {
@@ -29,6 +30,7 @@ public class ShapeGenerator {
             }
         }
 
+        //Evaluamos el punto en las capas de ruido restantes con la opcion de usar la primera como mascara
         for (int i = 1; i < noiseFilters.Length; i++) {
             if (settings.noiseLayers[i].enabled) {
                 float mask = (settings.noiseLayers[i].useFirstLayerAsMask) ? firstLayerValue : 1;
@@ -36,10 +38,12 @@ public class ShapeGenerator {
             }
         }
         
+        //Actualizamos el MinMax
         elevationMinMax.AddValue(elevation);
         return elevation;
     }
 
+    //Funcion que devuelve el punto escalado
     public float GetScaledElevation(float unscaledElevation) {
         float elevation = Mathf.Max(0, unscaledElevation);
         elevation = settings.planetRadius * (1 + elevation);

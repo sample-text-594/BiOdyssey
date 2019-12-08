@@ -10,16 +10,18 @@ public class FloraGenerator {
     public void UpdateSettings(FloraSettings settings, Transform t) {
         this.settings = settings;
 
+        //Si no existe el objeto contenedor de la flora lo creamos
         if (flora == null) {
             flora = new GameObject("flora");
             flora.transform.parent = t;
             flora.transform.localPosition = new Vector3(0f, 0f, 0f);
         }
 
+        //Limpiamos la flora
         ClearFlora();
 
+        //Instanciamos todos los arboles
         meshFilters = new MeshFilter[settings.treesPerFace * 6];
-
         for (int i = 0; i < meshFilters.Length; i++) {
             if (meshFilters[i] == null) {
                 GameObject meshObj = GameObject.Instantiate(settings.tree);
@@ -36,6 +38,7 @@ public class FloraGenerator {
         }
     }
 
+    //Por cada cara (a partes iguales) cogemos un punto aleatorio. Si es agua borramos el arbol, si no, lo colocamos sobre el terreno
     public void UpdateFlora(TerrainFace[] faces, float waterHeight) {
 
         int index = 0;
@@ -64,6 +67,7 @@ public class FloraGenerator {
         }
     }
 
+    //Limpiamos la flora
     public void ClearFlora() {
         if (meshFilters != null) {
             foreach (MeshFilter m in meshFilters) {
