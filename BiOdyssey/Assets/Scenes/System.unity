@@ -1767,7 +1767,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1848554188}
         m_MethodName: ReturnHome
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
