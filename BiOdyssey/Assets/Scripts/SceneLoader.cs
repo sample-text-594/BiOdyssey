@@ -7,13 +7,13 @@ using TMPro;
 public class SceneLoader : MonoBehaviour {
     public int sceneId;
     public GameObject loadingUI;
-    public TextMeshProUGUI loadingText;
+    public GameObject loadingGizmo;
 
     bool loadScene = false;
 
     void Update() {
         if (loadScene) {
-            loadingText.alpha = Mathf.PingPong(Time.time, 1);
+            loadingGizmo.transform.localEulerAngles = new Vector3(loadingGizmo.transform.localEulerAngles.x, loadingGizmo.transform.localEulerAngles.y, loadingGizmo.transform.localEulerAngles.z - 200 * Time.deltaTime);
         }
     }
 

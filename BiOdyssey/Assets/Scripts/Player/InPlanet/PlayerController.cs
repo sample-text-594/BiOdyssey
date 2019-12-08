@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour {
     public GameObject uiDiscover;
     public DiscoverCreature dc;
 
+    public GameObject touchControls;
+
     int colissionLayerMask;
 
     float energy;
@@ -42,6 +44,13 @@ public class PlayerController : MonoBehaviour {
 
     [HideInInspector]
     public bool poisonDamageEnabled = false;
+
+    bool upArrow;
+    bool downArrow;
+    bool leftArrow;
+    bool rightArrow;
+    bool boostButton;
+    bool scannerButton;
 
     void Start() {
         player = transform.GetChild(0);
@@ -62,13 +71,50 @@ public class PlayerController : MonoBehaviour {
 
         scanActive = false;
         scanTimeLeft = 0.0f;
+
+        if (Settings.onMobile) {
+            touchControls.SetActive(true);
+        }
+
+        upArrow = false;
+        downArrow = false;
+        leftArrow = false;
+        rightArrow = false;
+        boostButton = false;
+        scannerButton = false;
     }
     
     void Update() {
         if (!uiDiscover.activeSelf) {
-            float vAxis = Input.GetAxis("Vertical");
-            float hAxis = Input.GetAxis("Horizontal");
-            bool scanPressed = Input.GetKeyDown(KeyCode.E);
+            float vAxis = 0;
+            float hAxis = 0;
+            bool scanPressed = false;
+            if (!Settings.onMobile) {
+                vAxis = Input.GetAxis("Vertical");
+                hAxis = Input.GetAxis("Horizontal");
+                scanPressed = Input.GetKeyDown(KeyCode.E);
+            } else {
+                if (upArrow) {
+                    vAxis = 1;
+                }
+
+                if (downArrow) {
+                    vAxis = -1;
+                }
+
+                if (leftArrow) {
+                    hAxis = -1;
+                }
+
+                if (rightArrow) {
+                    hAxis = 1;
+                }
+
+                if (scannerButton) {
+                    scanPressed = true;
+                }
+            }
+            
 
             if (energy < 0) {
                 if (poisonDamageEnabled && Settings.energyCellsBroken < 4) {
@@ -119,7 +165,8 @@ public class PlayerController : MonoBehaviour {
 
             ConsumeEnergy(0.1f * energyConsumeMultiplier * Time.deltaTime);
 
-            if (energy > 20 && Input.GetKeyDown(KeyCode.Space)) {
+            if (energy > 20 && (Input.GetKeyDown(KeyCode.Space) || boostButton)) {
+                boostButton = false;
                 ConsumeEnergy(20);
 
                 boostActive = true;
@@ -191,5 +238,49 @@ public class PlayerController : MonoBehaviour {
         for (int i = 0; i < Settings.energyCellsBroken; i++) {
             ConsumeEnergy(20);
         }
+    }
+
+    public void OnUpArrowDown() {
+        upArrow = true;
+    }
+
+    public void OnUpArrowUp() {
+        upArrow = false;
+    }
+
+    public void OnDownArrowDown() {
+        downArrow = true;
+    }
+
+    public void OnDownArrowUp() {
+        downArrow = false;
+    }
+
+    public void OnLeftArrowDown() {
+        leftArrow = true;
+    }
+
+    public void OnLeftArrowUp() {
+        leftArrow = false;
+    }
+
+    public void OnRightArrowDown() {
+        rightArrow = true;
+    }
+
+    public void OnRightArrowUp() {
+        rightArrow = false;
+    }
+
+    public void OnScannerButtonDown() {
+        scannerButton = true;
+    }
+
+    public void OnScannerButtonUp() {
+        scannerButton = false;
+    }
+
+    public void OnBoostButtonClick() {
+        boostButton = true;
     }
 }

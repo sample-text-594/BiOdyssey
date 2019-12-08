@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Settings {
+    public static bool onMobile = false;
     public static UserData user = new UserData();
 
     public static SystemData system = new SystemData();

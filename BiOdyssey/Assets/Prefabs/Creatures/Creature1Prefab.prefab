@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6a8e623d91fb24eb78eaea340f50bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anims: []
   agent: {fileID: 0}
 --- !u!1001 &7548856116155401861
 PrefabInstance:
@@ -166,6 +167,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 83fd47e03c01c5b468cdab0c8533bf2c,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7ddfd9b68bd1ac94abe94ec4858a7ae3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83fd47e03c01c5b468cdab0c8533bf2c, type: 3}
 --- !u!4 &3294480343442386335 stripped

@@ -19,7 +19,9 @@ public class GoToPlanet : MonoBehaviour {
 
     public float fuelPerJump = 0.2f;
 
-    public SceneLoader sl;
+    public SceneLoader planetSceneLoader;
+    public SceneLoader baseSceneLoader;
+    public SceneLoader systemSceneLoader;
 
     Vector3 initAnimPos;
     Quaternion initAnimRot;
@@ -135,11 +137,17 @@ public class GoToPlanet : MonoBehaviour {
 
         Settings.returningFromPlanet = true;
 
-        sl.LoadScene();
+        planetSceneLoader.LoadScene();
     }
 
-    public void ReturnHome(int sceneId) {
-        SceneManager.LoadScene(sceneId);
+    public void ReturnHome() {
+        DatabaseHandler.PostSystem(Settings.system, () => {
+            Settings.fuel = 1;
+            Settings.energyCellsBroken = 0;
+            Settings.returningFromPlanet = false;
+
+            baseSceneLoader.LoadScene();
+        });
     }
 
     public void NextSystem() {
@@ -158,7 +166,7 @@ public class GoToPlanet : MonoBehaviour {
                     Settings.system = system;
 
                     //Cargamos el sistema
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                    systemSceneLoader.LoadScene();
                 }, () => {
                     //Si no existe inicializamos los campos por defecto
                     Settings.system.name = "";
@@ -173,7 +181,7 @@ public class GoToPlanet : MonoBehaviour {
                     }
 
                     //Cargamos el sistema
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                    systemSceneLoader.LoadScene();
                 });
             });
         }

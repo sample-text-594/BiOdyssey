@@ -83,29 +83,40 @@ public class PlanetBuilder : MonoBehaviour {
 
     GameObject BuildCreatureRandom() {
         GameObject creature;
+        GameObject part;
         Color col;
 
         int type = Random.Range(0, 2);
         creature = Instantiate(creatures[type].creaturePrefab);
 
         int rand = Random.Range(0, 5);
-        Instantiate(creatures[type].part1[rand]).transform.SetParent(creature.transform);
+        part = Instantiate(creatures[type].part1[rand]);
+        part.transform.SetParent(creature.transform);
+        part.GetComponent<Animator>().runtimeAnimatorController = creatures[type].part1Animator[rand];
         creature.name = "" + type + rand;
 
         rand = Random.Range(0, 5);
-        Instantiate(creatures[type].part2[rand]).transform.SetParent(creature.transform);
+        part = Instantiate(creatures[type].part2[rand]);
+        part.transform.SetParent(creature.transform);
+        part.GetComponent<Animator>().runtimeAnimatorController = creatures[type].part2Animator[rand];
         creature.name += rand;
 
         rand = Random.Range(0, 5);
-        Instantiate(creatures[type].part3[rand]).transform.SetParent(creature.transform);
+        part = Instantiate(creatures[type].part3[rand]);
+        part.transform.SetParent(creature.transform);
+        part.GetComponent<Animator>().runtimeAnimatorController = creatures[type].part3Animator[rand];
         creature.name += rand;
 
         rand = Random.Range(0, 5);
-        Instantiate(creatures[type].part4[rand]).transform.SetParent(creature.transform);
+        part = Instantiate(creatures[type].part4[rand]);
+        part.transform.SetParent(creature.transform);
+        part.GetComponent<Animator>().runtimeAnimatorController = creatures[type].part4Animator[rand];
         creature.name += rand;
 
         rand = Random.Range(0, 5);
-        Instantiate(creatures[type].part5[rand]).transform.SetParent(creature.transform);
+        part = Instantiate(creatures[type].part5[rand]);
+        part.transform.SetParent(creature.transform);
+        part.GetComponent<Animator>().runtimeAnimatorController = creatures[type].part5Animator[rand];
         creature.name += rand;
 
         if (type == 0) {
@@ -127,30 +138,41 @@ public class PlanetBuilder : MonoBehaviour {
 
     GameObject BuildCreature(int index) {
         GameObject creature;
+        GameObject part;
         Color col;
 
         int type = int.Parse(Settings.system.planets[Settings.actualPlanet].creatures[index].Substring(0, 1));
         creature = Instantiate(creatures[type].creaturePrefab);
 
         int rand = int.Parse(Settings.system.planets[Settings.actualPlanet].creatures[index].Substring(1, 1));
-        Instantiate(creatures[type].part1[rand]).transform.SetParent(creature.transform);
+        part = Instantiate(creatures[type].part1[rand]);
+        part.transform.SetParent(creature.transform);
+        part.GetComponent<Animator>().runtimeAnimatorController = creatures[type].part1Animator[rand];
         creature.name = "" + type + rand;
 
         rand = int.Parse(Settings.system.planets[Settings.actualPlanet].creatures[index].Substring(2, 1));
-        Instantiate(creatures[type].part2[rand]).transform.SetParent(creature.transform);
-        creature.name += rand;
+        part = Instantiate(creatures[type].part2[rand]);
+        part.transform.SetParent(creature.transform);
+        part.GetComponent<Animator>().runtimeAnimatorController = creatures[type].part2Animator[rand];
+        creature.name = "" + type + rand;
 
         rand = int.Parse(Settings.system.planets[Settings.actualPlanet].creatures[index].Substring(3, 1));
-        Instantiate(creatures[type].part3[rand]).transform.SetParent(creature.transform);
-        creature.name += rand;
+        part = Instantiate(creatures[type].part3[rand]);
+        part.transform.SetParent(creature.transform);
+        part.GetComponent<Animator>().runtimeAnimatorController = creatures[type].part3Animator[rand];
+        creature.name = "" + type + rand;
 
         rand = int.Parse(Settings.system.planets[Settings.actualPlanet].creatures[index].Substring(4, 1));
-        Instantiate(creatures[type].part4[rand]).transform.SetParent(creature.transform);
-        creature.name += rand;
+        part = Instantiate(creatures[type].part4[rand]);
+        part.transform.SetParent(creature.transform);
+        part.GetComponent<Animator>().runtimeAnimatorController = creatures[type].part4Animator[rand];
+        creature.name = "" + type + rand;
 
         rand = int.Parse(Settings.system.planets[Settings.actualPlanet].creatures[index].Substring(5, 1));
-        Instantiate(creatures[type].part5[rand]).transform.SetParent(creature.transform);
-        creature.name += rand;
+        part = Instantiate(creatures[type].part5[rand]);
+        part.transform.SetParent(creature.transform);
+        part.GetComponent<Animator>().runtimeAnimatorController = creatures[type].part5Animator[rand];
+        creature.name = "" + type + rand;
 
         if (type == 0) {
             col = creature1Colors.Evaluate(Random.Range(0f, 1f));

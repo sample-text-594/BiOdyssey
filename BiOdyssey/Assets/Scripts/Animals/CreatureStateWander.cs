@@ -12,11 +12,11 @@ public class CreatureStateWander : IStatesCreature {
 
         if (c.agent.remainingDistance == 0) {
             foreach (Animator anim in c.anims) {
-                anim.SetBool("isWalking", false);
+                anim.SetBool("isMoving", false);
             }
         } else {
             foreach (Animator anim in c.anims) {
-                anim.SetBool("isWalking", true);
+                anim.SetBool("isMoving", true);
             }
         }
         
@@ -25,10 +25,8 @@ public class CreatureStateWander : IStatesCreature {
         //Nuevo destino aleatorio.
         int rand = Random.Range(0, 1000);
         if(rand > 995) {
-
-            //Si es un bicho de Sandra usamos sus valores de altura
+            //Si es un gato usamos sus valores de altura
             if(c.GetComponentsInChildren<Transform>().Length == 5) {
-
                 //Si no está en el agua...
                 if(Vector3.Distance(c.transform.position, Vector3.zero) > 50.7) {
                     //...Destino aleatorio, si va al agua no se ejecuta, si va hacia tierra fija ese destino.
@@ -38,8 +36,8 @@ public class CreatureStateWander : IStatesCreature {
                     } else {
                         c.agent.destination = dest;
                     }
-                    //Si está en el agua hace lo mismo buscando tierra para ir rapidamente.
                 } else {
+                    //Si está en el agua hace lo mismo buscando tierra para ir rapidamente.
                     dest = c.transform.position + new Vector3((Random.value - 0.5f) * 1000, (Random.value - 0.5f) * 1000, (Random.value - 0.5f) * 1000);
                     if (Vector3.Distance(dest, Vector3.zero) < 50.7) {
                         return c.wanderState;
@@ -48,9 +46,11 @@ public class CreatureStateWander : IStatesCreature {
                     }
                 }
 
-            //Lo mismo con las de Kyke
+            //Si es una bola usamos sus valores de altura
             } else {
+                //Si no está en el agua...
                 if (Vector3.Distance(c.transform.position, Vector3.zero) > 50.1) {
+                    //...Destino aleatorio, si va al agua no se ejecuta, si va hacia tierra fija ese destino.
                     dest = c.transform.position + new Vector3((Random.value - 0.5f) * 10, (Random.value - 0.5f) * 10, (Random.value - 0.5f) * 10);
                     if (Vector3.Distance(dest, Vector3.zero) < 50.1) {
                         return c.wanderState;
@@ -58,6 +58,7 @@ public class CreatureStateWander : IStatesCreature {
                         c.agent.destination = dest;
                     }
                 } else {
+                    //Si está en el agua hace lo mismo buscando tierra para ir rapidamente.
                     dest = c.transform.position + new Vector3((Random.value - 0.5f) * 1000, (Random.value - 0.5f) * 1000, (Random.value - 0.5f) * 1000);
                     if (Vector3.Distance(dest, Vector3.zero) < 50.1) {
                         return c.wanderState;
