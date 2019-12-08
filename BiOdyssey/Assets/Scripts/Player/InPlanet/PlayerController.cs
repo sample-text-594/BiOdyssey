@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour {
 
     public GameObject touchControls;
 
+    public AudioClip mainMenuMusic;
+
     int colissionLayerMask;
 
     float energy;
@@ -211,7 +213,10 @@ public class PlayerController : MonoBehaviour {
     }
 
     //Método de vuelta al sistema
-    void ReturnToSystem() {
+    public void ReturnToSystem() {
+        AudioSource musicManager = GameObject.Find("MusicManager").GetComponent<AudioSource>();
+        musicManager.clip = mainMenuMusic;
+        musicManager.Play();
         sl.LoadScene();
     }
 

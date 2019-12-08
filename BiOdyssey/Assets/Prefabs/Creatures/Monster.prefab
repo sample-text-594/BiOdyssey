@@ -45,7 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  mainMenuMusic: {fileID: 8300000, guid: cfac6d00d159dcd47be00f30170c3fb7, type: 3}
   target: {fileID: 0}
+  sl: {fileID: 0}
 --- !u!1001 &5271817415655021864
 PrefabInstance:
   m_ObjectHideFlags: 0

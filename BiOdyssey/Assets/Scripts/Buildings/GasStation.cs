@@ -99,6 +99,9 @@ public class GasStation : MonoBehaviour {
 
     //Botón de vuelo al espacio
     public void Fly() {
+        Random.InitState((int)Time.time);
+        Settings.system.seed = Random.Range(1, 200001);
+
         //Comprobar si el sistema existe en la base de datos
         DatabaseHandler.GetSystem(Settings.system.seed.ToString(), system => {
             //Si existe lo recreamos

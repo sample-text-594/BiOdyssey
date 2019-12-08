@@ -7,6 +7,7 @@ public class MonsterController : MonoBehaviour {
 
     //Atributos
     public float speed = 1f;
+    public AudioClip mainMenuMusic;
  
     [HideInInspector]
     public PlayerController target;
@@ -38,7 +39,17 @@ public class MonsterController : MonoBehaviour {
         } else {
             monsterAnimator.SetBool("attack", true);
             if (monsterAnimator.GetCurrentAnimatorStateInfo(0).IsName("End")) {
-                sl.LoadScene();
+                DatabaseHandler.PostSystem(Settings.system, () => {
+                    AudioSource musicManager = GameObject.Find("MusicManager").GetComponent<AudioSource>();
+                    musicManager.clip = mainMenuMusic;
+                    musicManager.Play();
+
+                    Settings.fuel = 1;
+                    Settings.energyCellsBroken = 0;
+                    Settings.returningFromPlanet = false;
+
+                    sl.LoadScene();
+                });
             }
         }
     }

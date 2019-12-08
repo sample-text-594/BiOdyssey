@@ -17,9 +17,10 @@ public class Register : MonoBehaviour {
                 //Username already exists
             }, () => {
                 //Username free
+                Settings.user.username = usernameInput.text;
+                Settings.user.password = passwordInput.text;
+
                 DatabaseHandler.PostUser(Settings.user, () => {
-                    Settings.user.username = usernameInput.text;
-                    Settings.user.password = passwordInput.text;
                     SceneManager.LoadScene(mainMenuIndex);
                 });
             });

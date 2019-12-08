@@ -14,6 +14,8 @@ public class PlanetBuilder : MonoBehaviour {
 
     public PlayerController playerController;
 
+    public AudioClip[] planetMusic;
+
     void Start() {
         Planet p = gameObject.AddComponent<Planet>();
 
@@ -21,7 +23,7 @@ public class PlanetBuilder : MonoBehaviour {
         p.colourSettings = Settings.planetSettings.colourSettings;
         p.floraSettings = Settings.planetSettings.floraSettings;
 
-        p.resolution = 120;
+        p.resolution = Settings.user.quality;
         p.shapeSettings.planetRadius = 50;
         p.floraSettings.generateFlora = true;
 
@@ -29,15 +31,12 @@ public class PlanetBuilder : MonoBehaviour {
 
         switch (Settings.planetSettings.tag) {
             case "Fire":
-                Debug.Log("Fire");
                 playerController.energyConsumeMultiplier *= 2;
                 break;
             case "Poison":
-                Debug.Log("Poison");
                 playerController.poisonDamageEnabled = true;
                 break;
             case "Death":
-                Debug.Log("Death");
                 GameObject enemy = Instantiate(enemyCreature);
                 MonsterController mc = enemy.GetComponent<MonsterController>();
                 mc.target = playerController;
@@ -79,6 +78,8 @@ public class PlanetBuilder : MonoBehaviour {
                 }
                 break;
         }
+
+        UpdateMusic();
     }
 
     GameObject BuildCreatureRandom() {
@@ -189,5 +190,35 @@ public class PlanetBuilder : MonoBehaviour {
         }
 
         return creature;
+    }
+
+    public void UpdateMusic() {
+        AudioSource musicManager = GameObject.Find("MusicManager").GetComponent<AudioSource>();
+
+        switch(Settings.planetSettings.tag) {
+            case "Forest":
+                musicManager.clip = planetMusic[0];
+                break;
+            case "Desert":
+                musicManager.clip = planetMusic[1];
+                break;
+            case "Ocean":
+                musicManager.clip = planetMusic[2];
+                break;
+            case "Frozen":
+                musicManager.clip = planetMusic[3];
+                break;
+            case "Fire":
+                musicManager.clip = planetMusic[4];
+                break;
+            case "Poison":
+                musicManager.clip = planetMusic[5];
+                break;
+            case "Death":
+                musicManager.clip = planetMusic[5];
+                break;
+        }
+
+        musicManager.Play();
     }
 }

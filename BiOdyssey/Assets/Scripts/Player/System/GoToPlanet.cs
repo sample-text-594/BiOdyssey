@@ -158,7 +158,8 @@ public class GoToPlanet : MonoBehaviour {
             //Subimos el sistema con los cambios realizados
             DatabaseHandler.PostSystem(Settings.system, () => {
                 //Obtenemos el siguiente sistema
-                Settings.system.seed++;
+                Random.InitState((int)Time.time);
+                Settings.system.seed = Random.Range(1, 8000001);
 
                 //Comprobar si el sistema existe en la base de datos
                 DatabaseHandler.GetSystem(Settings.system.seed.ToString(), system => {

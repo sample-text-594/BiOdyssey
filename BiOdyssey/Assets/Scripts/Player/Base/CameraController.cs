@@ -44,7 +44,7 @@ public class CameraController : MonoBehaviour {
     void Update() {
 
         //Controles de la cámara por parte del usuario
-        if (Input.GetMouseButton(0) && canRotate) {
+        if (Input.GetMouseButton(0) && canRotate && !Settings.onMobile) {
             float horizontal = Input.GetAxis("Mouse X");
             float vertical = Input.GetAxis("Mouse Y");
 
@@ -53,7 +53,7 @@ public class CameraController : MonoBehaviour {
         }
 
         //Click encima del taller o de la gasolinera
-        if (Input.GetMouseButtonDown(0) && canInteract) {
+        if (Input.GetMouseButtonDown(0) && canInteract && !Settings.onMobile) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             RaycastHit hit;
@@ -140,5 +140,23 @@ public class CameraController : MonoBehaviour {
         uiPlanetEnabled = true;
 
         StartAnimation(transform, originalTransform);
+    }
+
+    public void GoToDocks(Transform t) {
+        transform.SetParent(t);
+        uiPlanet.SetActive(false);
+        uiPlanetEnabled = false;
+
+        uiTallerEnabled = true;
+        StartAnimation(transform, tallerViewTransform);
+    }
+
+    public void GoToGasStation(Transform t) {
+        transform.SetParent(t);
+        uiPlanet.SetActive(false);
+        uiPlanetEnabled = false;
+
+        uiGasolineraEnabled = true;
+        StartAnimation(transform, gasolineraViewTransform);
     }
 }

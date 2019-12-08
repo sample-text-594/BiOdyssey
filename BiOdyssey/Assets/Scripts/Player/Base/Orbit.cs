@@ -12,6 +12,8 @@ public class Orbit : MonoBehaviour {
     }
 
     void Update() {
-        transform.Rotate(axis, orbitSpeed * Time.deltaTime);
+        if (!Settings.onMobile) {
+            transform.Rotate(axis, orbitSpeed * Time.deltaTime);
+        }
     }
 }

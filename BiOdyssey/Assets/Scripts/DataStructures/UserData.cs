@@ -19,5 +19,8 @@ public class UserData {
         baseShapeIndex = 0;
         baseColorIndex = 0;
         baseFloraIndex = 0;
+
+        quality = 60;
+        volume = 5;
     }
 }

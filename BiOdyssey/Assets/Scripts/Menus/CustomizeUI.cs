@@ -13,12 +13,18 @@ public class CustomizeUI : MonoBehaviour {
     public GameObject customizeButton;
     public GameObject customizeUI;
 
+    public GameObject mobileDocks;
+    public GameObject mobileGasStation;
+
     public ShapeSettings[] terrains;
     public ColourSettings[] colors;
     public FloraSettings[] floras;
 
     void Start() {
-        
+        if (Settings.onMobile) {
+            mobileDocks.SetActive(true);
+            mobileGasStation.SetActive(true);
+        }
     }
 
     public void startCustomization() {
@@ -28,6 +34,9 @@ public class CustomizeUI : MonoBehaviour {
         menuButton.SetActive(false);
         customizeButton.SetActive(false);
         customizeUI.SetActive(true);
+
+        mobileDocks.SetActive(false);
+        mobileGasStation.SetActive(false);
 
         Camera.main.transform.localPosition += Camera.main.transform.right * cameraOffset;
     }
@@ -39,6 +48,11 @@ public class CustomizeUI : MonoBehaviour {
         menuButton.SetActive(true);
         customizeButton.SetActive(true);
         customizeUI.SetActive(false);
+
+        if (Settings.onMobile) {
+            mobileDocks.SetActive(true);
+            mobileGasStation.SetActive(true);
+        }
 
         Camera.main.transform.localPosition -= Camera.main.transform.right * cameraOffset;
     }
