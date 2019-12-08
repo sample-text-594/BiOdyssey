@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Control de la cámara en el planeta base
 public class CameraController : MonoBehaviour {
     public Transform originalTransform;
     public Transform gasolineraViewTransform;
@@ -41,6 +42,8 @@ public class CameraController : MonoBehaviour {
     }
 
     void Update() {
+
+        //Controles de la cámara por parte del usuario
         if (Input.GetMouseButton(0) && canRotate) {
             float horizontal = Input.GetAxis("Mouse X");
             float vertical = Input.GetAxis("Mouse Y");
@@ -49,24 +52,30 @@ public class CameraController : MonoBehaviour {
             transform.RotateAround(new Vector3(0f, 0f, 0f), transform.right, -vertical * dragSpeed * Time.deltaTime);
         }
 
+        //Click encima del taller o de la gasolinera
         if (Input.GetMouseButtonDown(0) && canInteract) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             RaycastHit hit;
+
+            //Si estás viendo un edificio orbitante
             if (Physics.Raycast(ray, out hit)) {
                 if (hit.collider.gameObject.layer == 9) {
                     uiPlanet.SetActive(false);
                     uiPlanetEnabled = false;
 
                     transform.SetParent(hit.collider.transform);
+                    //Sea gasolinera
                     if (hit.collider.name.Equals("GasStation")) {
                         uiGasolineraEnabled = true;
                         StartAnimation(transform, gasolineraViewTransform);
+                    //Sea taller
                     } else {
                         uiTallerEnabled = true;
                         StartAnimation(transform, tallerViewTransform);
                     }
 
+                    //No puedes mover la cámara ni interaccionar con el resto
                     canRotate = false;
                     canInteract = false;
                 }
@@ -78,6 +87,7 @@ public class CameraController : MonoBehaviour {
         }
     }
 
+    //Animación al clicar en un edificio
     private void StartAnimation(Transform start, Transform end) {
         initAnimPos = start.localPosition;
         initAnimRot = start.localRotation;
@@ -86,6 +96,7 @@ public class CameraController : MonoBehaviour {
         animate = true;
     }
 
+    //Animación al clicar en un edificio
     private void Animate() {
         if ((Time.time - startTime) >= animationDuration) {
             transform.localPosition = endAnim.localPosition;
@@ -112,6 +123,7 @@ public class CameraController : MonoBehaviour {
         }
     }
 
+    //Animación al salir de un edificio
     public void Return() {
         transform.SetParent(null);
 

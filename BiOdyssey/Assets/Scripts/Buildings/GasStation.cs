@@ -4,7 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+//Clase que controla la gasolinera de la nave nodriza en el planeta base.
 public class GasStation : MonoBehaviour {
+
+    //Atributos
     public TextMeshProUGUI timeText;
     public GameObject reduceTimeButton;
     public GameObject flyButton;
@@ -33,10 +36,13 @@ public class GasStation : MonoBehaviour {
         minutes = (Settings.timeLeftFill % 3600) / 60;
         seconds = (Settings.timeLeftFill % 3600) % 60;
 
+        //Cambia el texto en función del tiempo restante.
         SetText();
     }
 
     void Update() {
+
+        //Cambia el texto mientras desciende el tiempo.
         if (Settings.timeLeftFill > 0) {
             if (accumulatedTime == -1f) {
                 accumulatedTime = 0f;
@@ -66,6 +72,8 @@ public class GasStation : MonoBehaviour {
                 SetText();
             }
         } else {
+
+            //Si el tiempo es 0, el botón de ir al espacio se activa.
             if (!done) {
                 done = true;
 
@@ -75,6 +83,7 @@ public class GasStation : MonoBehaviour {
         }
     }
 
+    //Método que cambia el texto del tiempo.
     void SetText() {
         string time;
         time = "0" + hours + ":";
@@ -88,6 +97,7 @@ public class GasStation : MonoBehaviour {
         timeText.SetText(time);
     }
 
+    //Botón de vuelo al espacio
     public void Fly() {
         //Comprobar si el sistema existe en la base de datos
         DatabaseHandler.GetSystem(Settings.system.seed.ToString(), system => {

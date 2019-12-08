@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+//Script de control de la nave de exploración
 public class PlayerController : MonoBehaviour {
 
+    //Atributos
     public float movementSpeed = 1f;
     public float rotationSpeed = 1f;
     public float verticalSpeed = 1f;
@@ -15,9 +17,11 @@ public class PlayerController : MonoBehaviour {
     public float boostSpeedMultiplier = 2;
     public float boostDuration = 1;
 
+    //Barras de energía
     public Slider[] energyBars;
     public float energyConsumeMultiplier = 1;
 
+    //Escáner de criaturas
     public GameObject scanner;
     public float scanDuration = 1;
 
@@ -45,6 +49,7 @@ public class PlayerController : MonoBehaviour {
     [HideInInspector]
     public bool poisonDamageEnabled = false;
 
+    //Controles
     bool upArrow;
     bool downArrow;
     bool leftArrow;
@@ -53,6 +58,7 @@ public class PlayerController : MonoBehaviour {
     bool scannerButton;
 
     void Start() {
+        //Inicia los atributos
         player = transform.GetChild(0);
         planetRadius = GameObject.Find("Planet").GetComponent<Planet>().shapeSettings.planetRadius;
 
@@ -85,6 +91,7 @@ public class PlayerController : MonoBehaviour {
     }
     
     void Update() {
+        //Controles de la nave
         if (!uiDiscover.activeSelf) {
             float vAxis = 0;
             float hAxis = 0;
@@ -115,8 +122,9 @@ public class PlayerController : MonoBehaviour {
                 }
             }
             
-
+            //Si la energía baja a cero, sales del planeta
             if (energy < 0) {
+                //Y si es un planeta venenoso, rompes una celula de la batería
                 if (poisonDamageEnabled && Settings.energyCellsBroken < 4) {
                     Settings.energyCellsBroken++;
                     poisonDamageEnabled = false;
@@ -124,6 +132,7 @@ public class PlayerController : MonoBehaviour {
                 ReturnToSystem();
             }
 
+            //Activación y desactivación del escáner
             if (scanActive) {
                 scanTimeLeft -= Time.deltaTime;
                 if (scanTimeLeft < 0) {
@@ -137,6 +146,7 @@ public class PlayerController : MonoBehaviour {
                 scanActive = true;
             }
 
+            //Movimientos
             if (vAxis != 0.0f) {
                 if (boostActive) {
                     transform.Rotate(new Vector3(0.0f, -vAxis * movementSpeed * boostSpeedMultiplier * Time.deltaTime, 0.0f));
@@ -163,8 +173,10 @@ public class PlayerController : MonoBehaviour {
                 player.localPosition = new Vector3(0.0f, 0.0f, player.localPosition.z + 0.1f * verticalSpeed * Time.deltaTime);
             }
 
+            //Consumición de energía
             ConsumeEnergy(0.1f * energyConsumeMultiplier * Time.deltaTime);
 
+            //Boost
             if (energy > 20 && (Input.GetKeyDown(KeyCode.Space) || boostButton)) {
                 boostButton = false;
                 ConsumeEnergy(20);
@@ -175,6 +187,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    //Método de consumición de energía
     void ConsumeEnergy(float quantity) {
         float quantityConverted = quantity / (100 / energyBars.Length);
 
@@ -197,10 +210,12 @@ public class PlayerController : MonoBehaviour {
         energy -= quantity;
     }
 
+    //Método de vuelta al sistema
     void ReturnToSystem() {
         sl.LoadScene();
     }
 
+    //Método que controla el escáner
     public void OnScan(Collider other) {
         if (scanActive) {
             scanner.SetActive(false);
@@ -229,6 +244,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    //Recarga de energía con powerups
     public void RechargeEnergy() {
         foreach (Slider s in energyBars) {
             s.value = 1;
@@ -240,6 +256,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    //Controles
     public void OnUpArrowDown() {
         upArrow = true;
     }

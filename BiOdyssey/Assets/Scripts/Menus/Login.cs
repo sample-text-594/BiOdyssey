@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+//Clase para manejar el login.
 public class Login : MonoBehaviour {
     public TMP_InputField usernameInput;
     public TMP_InputField passwordInput;
 
+    //Boton login
     public void LoginButton(int mainMenuIndex) {
         if (!usernameInput.text.Equals("") && !passwordInput.text.Equals("")) {
             DatabaseHandler.GetUser(usernameInput.text, user => {

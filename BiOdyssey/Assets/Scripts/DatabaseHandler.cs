@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Proyecto26;
 
+//Llamadas a la base de datos. 
 public class DatabaseHandler {
     private const string projectId = "biodysseygame";
     private static readonly string databaseURL = $"https://{projectId}.firebaseio.com/";
@@ -12,6 +13,7 @@ public class DatabaseHandler {
     public delegate void GetSystemCallbackNotFound();
     public delegate void PostSystemCallback();
 
+    //Métodos get y post de usuarios
     public static void GetUser(string username, GetUserCallback callback, GetUserCallbackNotFound callbackNotFound) {
         RestClient.Get<UserData>($"{databaseURL}users/{username}.json").Then(user => {
             Debug.Log("GetUser");
@@ -29,6 +31,7 @@ public class DatabaseHandler {
         });
     }
 
+    //Métodos get y post de sistemas planetarios
     public static void GetSystem(string systemId, GetSystemCallback callback, GetSystemCallbackNotFound callbackNotFound) {
         RestClient.Get<SystemData>($"{databaseURL}systems/{systemId}.json").Then(system => {
             Debug.Log("GetSystem");

@@ -1,5 +1,6 @@
 ﻿using System;
 
+//Estructura de datos que controla los sistemas planetarios y sus características, como su nombre o su seed.
 [Serializable]
 public class SystemData {
     public int seed;

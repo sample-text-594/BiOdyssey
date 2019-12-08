@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Estado de vagar por el planeta.
 public class CreatureStateWander : IStatesCreature {
 
-    //Atributo de velocidad.
+    //Atributos
     public int speed = 1;
     Vector3 dest;
 
     public IStatesCreature Update(CreatureController c) {
 
+        //Si está en su destino, no se está moviendo, el atributo del animator cambia. Si ya ha llegado, lo mismo.
         if (c.agent.remainingDistance == 0) {
             foreach (Animator anim in c.anims) {
                 anim.SetBool("isMoving", false);

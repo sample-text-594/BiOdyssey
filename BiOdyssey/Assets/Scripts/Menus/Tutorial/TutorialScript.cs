@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//Clase que maneja la información a vislumbrar en el tutorial, así como su interfaz.
 public class TutorialScript : MonoBehaviour {
     public GameObject[] tutorialSlides;
     int index;
@@ -11,6 +12,7 @@ public class TutorialScript : MonoBehaviour {
         index = 0;
     }
 
+    //Botones para cambiar las pantallas.
     public void Previous() {
         if (index > 0) {
             tutorialSlides[index].SetActive(false);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+//Clase que maneja los diálogos al llegar a un sistema
 public class DiscoverSystem : MonoBehaviour {
     public Star star;
     public GameObject uiSystem;
@@ -25,10 +26,13 @@ public class DiscoverSystem : MonoBehaviour {
         //Comprobar en la base de datos si el sistema ya esta descubierto
         isDiscovered = !Settings.system.name.Equals("");
 
+        //Si está descubierto, muestra el nombre
         if (isDiscovered) {
             renameButton.SetActive(false);
             skipButton.SetActive(false);
             renameText.SetActive(false);
+
+        //Si no, activa el diálogo de renombrar
         } else {
             okButton.SetActive(false);
             Settings.system.name = star.gameObject.name;
@@ -39,11 +43,13 @@ public class DiscoverSystem : MonoBehaviour {
         systemUserName.SetText(Settings.system.userName);
     }
 
+    //Botón de renombrar
     public void Rename() {
         uiNewSystem.SetActive(false);
         uiRenameSystem.SetActive(true);
     }
 
+    //Botón de no renombrar
     public void Skip() {
         gtp.uiSystemEnabled = true;
 
@@ -51,9 +57,11 @@ public class DiscoverSystem : MonoBehaviour {
         uiSystem.SetActive(true);
     }
 
+    //Botón de confirmar
     public void Confirm() {
         string newName = starNameInput.text;
 
+        //Si hay un nuevo nombre, lo cambia
         if (!newName.Equals("")) {
             star.RenameStar(newName);
             systemName.SetText(newName);

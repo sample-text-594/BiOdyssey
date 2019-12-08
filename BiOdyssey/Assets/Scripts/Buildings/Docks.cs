@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+//Clase que controla el comportamiento del taller.
 public class Docks : MonoBehaviour {
+
+    //Atributos
     public TextMeshProUGUI timeText;
     public GameObject reduceTimeButton;
     public GameObject ship;
@@ -31,10 +34,12 @@ public class Docks : MonoBehaviour {
         minutes = (Settings.timeLeftRepair % 3600) / 60;
         seconds = (Settings.timeLeftRepair % 3600) % 60;
 
+        //Cambia el texto en función del tiempo restante.
         SetText();
     }
 
     void Update() {
+        //Cada segundo que pasa cambia el texto del tiempo restante.
         if (Settings.timeLeftFill > 0) {
             if (accumulatedTime == -1f) {
                 accumulatedTime = 0f;
@@ -70,6 +75,7 @@ public class Docks : MonoBehaviour {
         }
     }
 
+    //Método que cambia el texto del tiempo.
     void SetText() {
         string time;
         time = "0" + hours + ":";

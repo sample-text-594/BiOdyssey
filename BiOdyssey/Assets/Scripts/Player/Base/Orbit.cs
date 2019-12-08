@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Clase que hace que los elementos orbiten
 public class Orbit : MonoBehaviour {
     public float orbitSpeed = 1;
 

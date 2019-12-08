@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Clase que controla la criatura, sus partes y el animator asociado a cada parte
 [CreateAssetMenu]
 public class Creature : ScriptableObject {
     public GameObject creaturePrefab;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Clase que controla la estrella, su color, tamaño, etc.
 public class Star : MonoBehaviour
 {
     public Mesh mesh;
@@ -25,8 +26,11 @@ public class Star : MonoBehaviour
     Color sunLightColor;
 
     void Start() {
+
+        //Al arrancar el sistema con una seed aleatoria
         Random.InitState(Settings.system.seed);
 
+        //Genera el nombre si no está ya renombrado por un usuario
         if (Settings.system.name.Equals("")) {
             nameGenerator = new NameGenerator();
             gameObject.name = nameGenerator.generateName(Settings.system.seed);
@@ -34,16 +38,20 @@ public class Star : MonoBehaviour
             gameObject.name = Settings.system.name;
         }
         
+        //Tamaño aleatorio de la estrella
         float scale = Random.Range(10, 101) / 10.0f;
 
+        //La cámara se adecúa a ese tamaño
         Camera.main.transform.position = new Vector3 (0, 26 + 20 * scale, -26 -20 * scale);
         cameraReference.position = new Vector3(0, 26 + 20 * scale, -26 - 20 * scale);
 
+        //El color de la estrella y de la luz que emite depende del tamaño
         transform.localScale = new Vector3(scale, scale, scale);
         sunLightColor = grad.Evaluate(scale/10);
 
         starMaterial.SetColor("_EmissionColor", sunLightColor);
 
+        //Genera los planetas existentes...
         numPlanets = Random.Range(3, 6);
         planetoidTransformArray = new Transform[numPlanets];
         planetTransformArray = new Transform[numPlanets];
@@ -51,6 +59,7 @@ public class Star : MonoBehaviour
         distancesArray = new float[numPlanets];
         RotationSpeedArray = new float[numPlanets];
 
+        //...Y los coloca en escena orbitando la estrella
         for (int i = 0; i < numPlanets; i++)
         {
             if (i != 0)
@@ -61,6 +70,7 @@ public class Star : MonoBehaviour
                 distancesArray[i] = Random.Range(5, 10) + scale/4;
             }
             string name = gameObject.name;
+            //Nombres de los planetas en función del nombre del sistema
             switch (i)
             {
                 case 0:
@@ -80,8 +90,10 @@ public class Star : MonoBehaviour
                     break;
             }
 
+            //Tamaño de los planetas
             float size = Random.Range(10, 101) / 10.0f;
 
+            //Genera los planetas
             GameObject planetoid = new GameObject(name);
             planetoid.transform.SetParent(transform);
             planetoid.transform.localScale = new Vector3(size, size, size);
@@ -90,6 +102,7 @@ public class Star : MonoBehaviour
             planet.transform.SetParent(planetoid.transform);
             planet.layer = i + 20;
 
+            //Sus luces
             GameObject sunLight = new GameObject("sunLight");
             sunLight.transform.SetParent(planet.transform);
 
@@ -103,6 +116,7 @@ public class Star : MonoBehaviour
 
             sunLight.transform.SetParent(planetoid.transform);
 
+            //Luz de efecto ambiental para la cara oculta
             GameObject moonLight = new GameObject("moonLight");
             moonLight.transform.SetParent(planet.transform);
 
@@ -116,6 +130,7 @@ public class Star : MonoBehaviour
 
             moonLight.transform.SetParent(planetoid.transform);
 
+            //Se le añade el script a cada planeta y se genera con sus settings
             Planet p = planet.AddComponent<Planet>();
             int randPlanet = Random.Range(0, planetSettings.Length);
 
@@ -148,6 +163,7 @@ public class Star : MonoBehaviour
         }
     }
     
+    //Cada frame cambia la posición
     void Update()
     {
         for(int i = 0; i< numPlanets; i++){
@@ -156,6 +172,7 @@ public class Star : MonoBehaviour
         }
     }
 
+    //Botones de viaje de la cámara entre planetas
     public string GetFirstPlanetName() {
         return planetoidTransformArray[0].name;
     }
@@ -184,6 +201,7 @@ public class Star : MonoBehaviour
         return null;
     }
 
+    //Cambia los nombres de los planetas al renombrar el sistema
     public void RenameStar(string newName) {
         gameObject.name = newName;
 

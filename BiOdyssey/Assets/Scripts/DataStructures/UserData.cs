@@ -1,5 +1,7 @@
 ﻿using System;
 
+//Estructura de datos que controla los datos del usuario y su planeta base.
+
 [Serializable]
 public class UserData {
     public string username;

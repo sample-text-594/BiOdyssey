@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//Clase para asignar los controles en función de si juegas en pc o móvil.
 public class ControlsSelection : MonoBehaviour
 {
     public void PC() {

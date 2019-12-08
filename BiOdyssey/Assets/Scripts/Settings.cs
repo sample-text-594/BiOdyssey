@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Clase que define los ajustes de la sesión de juego, como el dispositivo, tu planeta base, o el fuel disponible.
 public class Settings {
     public static bool onMobile = false;
     public static UserData user = new UserData();

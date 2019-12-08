@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//Clase para manejar los cambios del planeta base.
 public class CustomizeUI : MonoBehaviour {
     public CameraController cameraController;
     public float cameraOffset = 10f;

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+//Clase usada para manejar los cambios entre escenas
 public class SceneLoader : MonoBehaviour {
     public int sceneId;
     public GameObject loadingUI;

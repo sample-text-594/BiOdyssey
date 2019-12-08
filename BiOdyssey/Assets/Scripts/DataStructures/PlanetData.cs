@@ -1,5 +1,6 @@
 ﻿using System;
 
+//Estructura de datos que controla las criaturas que aparecen en cada planeta y sus características, como sus nombres.
 [Serializable]
 public class PlanetData {
     public string[] creatures;

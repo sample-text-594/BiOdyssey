@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Clase que genera un nombre aleatorio para sistemas no renombrados en función de la seeds
 public class NameGenerator {
 
     public string generateName(int seed)
