@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b981c23910453a24ebcff829c62ad219, type: 3}
+  m_Name: ForestFlora
+  m_EditorClassIdentifier: 
+  treesPerFace: 200
+  tree: {fileID: 1625110378764506599, guid: 7f6cd3c531fc474459cc5df14b3553cc, type: 3}
+  treeMaterial: {fileID: 2100000, guid: 013dd412d79176049a247bc2fa131705, type: 2}
+  generateFlora: 1

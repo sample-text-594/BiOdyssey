@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b981c23910453a24ebcff829c62ad219, type: 3}
+  m_Name: OceanFlora
+  m_EditorClassIdentifier: 
+  treesPerFace: 200
+  tree: {fileID: 4873530742285851767, guid: c23fe47d3f9c3df4e92312c440dd638c, type: 3}
+  generateFlora: 1

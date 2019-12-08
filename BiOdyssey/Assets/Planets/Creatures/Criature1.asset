@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c21ad843caee9942b803c0e235ff313, type: 3}
+  m_Name: Criature1
+  m_EditorClassIdentifier: 
+  creaturePrefab: {fileID: 6631403484112511337, guid: 775d075458119404ea171971026ca938,
+    type: 3}
+  part1:
+  - {fileID: -927199367670048503, guid: 19050fa86432e8d4dbc4d94372335c0c, type: 3}
+  - {fileID: -927199367670048503, guid: 5be3b5fe5b72c864aa47f5da6488092b, type: 3}
+  - {fileID: -927199367670048503, guid: b4dc72b21db903b4082869bfd92baffd, type: 3}
+  - {fileID: -927199367670048503, guid: 687d508cb31e5ff4fb28a51ae225624a, type: 3}
+  - {fileID: -927199367670048503, guid: bb5f24f8ca32afc46a139e0c6372e20f, type: 3}
+  part2:
+  - {fileID: -927199367670048503, guid: 895b8b9b458b9144aa5f2bcf4a8d1678, type: 3}
+  - {fileID: -927199367670048503, guid: 38458e83927e36340be990d47577f490, type: 3}
+  - {fileID: -927199367670048503, guid: 67c0c36053c80714c82985276015859c, type: 3}
+  - {fileID: -927199367670048503, guid: 9cff26f3c2cfbe1409818fd6de63a21a, type: 3}
+  - {fileID: -927199367670048503, guid: ea71d79c0cd98ed46a7814e34e3a5beb, type: 3}
+  part3:
+  - {fileID: -927199367670048503, guid: 78dfab676e8a2c34694175ecf6979aa1, type: 3}
+  - {fileID: -927199367670048503, guid: 42d19a37c9dad704697547365edf1b28, type: 3}
+  - {fileID: -927199367670048503, guid: be394c15551662f4d9e19b390e553e02, type: 3}
+  - {fileID: -927199367670048503, guid: ca4a5235d78bbcb4ca6e5d91f40a0283, type: 3}
+  - {fileID: -927199367670048503, guid: e95b58705fd31e44c9080d5b1bbec9a4, type: 3}
+  part4:
+  - {fileID: -927199367670048503, guid: bcdc33e22ec501a47a5b699fc64aeb9d, type: 3}
+  - {fileID: -927199367670048503, guid: 6238ba5aebeda6a48a3cd2f722faa400, type: 3}
+  - {fileID: -927199367670048503, guid: 0a83187afcb4a2442be9084b6a6706fc, type: 3}
+  - {fileID: -927199367670048503, guid: 03236ac55bcaa2a4dbef28eb6fc8db59, type: 3}
+  - {fileID: -927199367670048503, guid: 53987cc747485194baa73f321f1648e8, type: 3}
+  part5:
+  - {fileID: -927199367670048503, guid: 4972edf5da8e30843991363067137b92, type: 3}
+  - {fileID: -927199367670048503, guid: b777fba5810f2004ebe553b40ad6ee80, type: 3}
+  - {fileID: -927199367670048503, guid: 7729e2013f9ce634d971501275a0654b, type: 3}
+  - {fileID: -927199367670048503, guid: c609cd473aea66d4abf33b7bb4c9ad49, type: 3}
+  - {fileID: -927199367670048503, guid: 21b6bfa9ceb471e4db8e6b09f884782a, type: 3}
+  part1Animator:
+  - {fileID: 9100000, guid: 13b2b7171d496a8409efb4be1b77eb15, type: 2}
+  - {fileID: 9100000, guid: 528c90a52f5a39843b60d14c99a655a9, type: 2}
+  - {fileID: 9100000, guid: 6a233c9a2ad662d48b6454e2f240f8e9, type: 2}
+  - {fileID: 9100000, guid: 846646f868dc6cc4eb226611897fb3e0, type: 2}
+  - {fileID: 9100000, guid: 32d149b41502720439f75c1cb02eeb7a, type: 2}
+  part2Animator:
+  - {fileID: 9100000, guid: ef03abd8f3c1c8e42bf755b881a552ac, type: 2}
+  - {fileID: 9100000, guid: beadaf50e0b46fc4b88bf10241c08cc9, type: 2}
+  - {fileID: 9100000, guid: 01a9bd86e508f6e45983814f9418b071, type: 2}
+  - {fileID: 9100000, guid: 65a61f30a1047ea4684b7f460d76bd94, type: 2}
+  - {fileID: 9100000, guid: 0f1240a53c7df534aaacc9fd3f6c55a4, type: 2}
+  part3Animator:
+  - {fileID: 9100000, guid: 7356ee0fb241dff4fa602bd43818b2e0, type: 2}
+  - {fileID: 9100000, guid: f5ee6de2d869c654291bdf83e04d7d31, type: 2}
+  - {fileID: 9100000, guid: 2a4d5a046ab56da4a913f2e2c74c29ce, type: 2}
+  - {fileID: 9100000, guid: f300af1ebf1ccad41a507b883a9d6a67, type: 2}
+  - {fileID: 9100000, guid: 1344bd8153b193a4d90d126072bf597f, type: 2}
+  part4Animator:
+  - {fileID: 9100000, guid: 996d7f6ff1f1eb94293cb3d6f6cc508c, type: 2}
+  - {fileID: 9100000, guid: b211ab811d6a0c245b39ca88429d4fde, type: 2}
+  - {fileID: 9100000, guid: abeb309bf4983234b81c7f816d7890bb, type: 2}
+  - {fileID: 9100000, guid: bcf7b877dd1fac347b5b596f8acbbd3b, type: 2}
+  - {fileID: 9100000, guid: fedd191cf18616843b16700024ee87dd, type: 2}
+  part5Animator:
+  - {fileID: 9100000, guid: 86b1efc2448fb764ea2d269d1143224d, type: 2}
+  - {fileID: 9100000, guid: 833525b7d17e12b4888d6aa286044533, type: 2}
+  - {fileID: 9100000, guid: 6623f9e403a68134e8ee9b50c1e7b180, type: 2}
+  - {fileID: 9100000, guid: fc5aa1f19e01742468062ca48a7ddad2, type: 2}
+  - {fileID: 9100000, guid: ecfaab32ee1e9054fb0846539c7648bb, type: 2}
