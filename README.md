@@ -9,6 +9,7 @@
 5. [Sonido y música](#5-sonido-y-música)
 6. [Comercialización](#6-comercialización)
 7. [Bibliografía](#7-bibliografía)
+8. [Enlaces](#8-enlaces)
 
 
 ## 1. Introducción 
@@ -268,3 +269,9 @@ Total: 0€
 * TextMeshPro - Paquete oficial de *Unity*
 * Implementación del ruido de Perlin - [*Stefan Gustavson, Karsten Schmidt, Sebastian Lague*](https://github.com/SebLague/Procedural-Planets/blob/master/Procedural%20Planet%20Noise/Noise.cs)
 * ConditionalHideAttribute - *Brecht Lecluyse, Sebastian Lague*
+
+
+## 8. Enlaces
+* [Github](https://github.com/sample-text-594/BiOdyssey)
+* [Portfolio](https://sample-text-594.github.io/)
+* [Itch.io](https://sampletext594.itch.io/biodyssey)
